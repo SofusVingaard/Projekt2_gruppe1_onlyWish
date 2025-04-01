@@ -7,5 +7,4 @@ import org.springframework.boot.test.context.SpringBootTest;
 class Projekt2Gruppe1OnlyWishApplicationTests {
 
 
-
 }
