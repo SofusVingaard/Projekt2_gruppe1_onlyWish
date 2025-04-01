@@ -10,4 +10,5 @@ public class Projekt2Gruppe1OnlyWishApplication {
         SpringApplication.run(Projekt2Gruppe1OnlyWishApplication.class, args);
     }
 
+
 }
