@@ -10,5 +10,4 @@ public class Wish {
     BigDecimal price;
     String url;
     String image;
-
 }

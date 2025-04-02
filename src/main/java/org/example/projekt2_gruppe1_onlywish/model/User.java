@@ -23,7 +23,16 @@ public class User {
         wishlists = new ArrayList<>();
         this.image=image;
     }
-    public User(String userName, int age, String email, String password, List<Wishlist> wishlists) {
+    public User(String userName, int age, String email, String password) {
+        this.userName = userName;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.wishlists = wishlists;
+        image=null;
+    }
+    public User(int id,String userName, int age, String email, String password) {
+        this.id = id;
         this.userName = userName;
         this.age = age;
         this.email = email;
