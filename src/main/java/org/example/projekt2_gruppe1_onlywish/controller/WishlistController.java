@@ -18,17 +18,17 @@ public class WishlistController {
 WishlistRepository wishlistRepository;
 
 
-//Bruges til at gå til html siden til at createWishlist
+
 @GetMapping("/getCreateWishlist")
     public String getCreateWishlist() {
     return "createWishlist";
 }
 
 @PostMapping("/saveCreateWishlist")
-    public String saveCreateWishlist(@RequestParam ("userid") int userid,
+    public String saveCreateWishlist(@RequestParam ("userid") int userId,
                                      @RequestParam ("name") String name,
                                      @RequestParam ("required = false") String description) {
-    Wishlist wishlist = new Wishlist( userid, name, description);
+    Wishlist wishlist = new Wishlist( userId, name, description);
 
     wishlistRepository.saveWishlist(wishlist);
     return "redirect:/";
@@ -36,11 +36,28 @@ WishlistRepository wishlistRepository;
 }
 
 @GetMapping("/getUpdateWishlist")
-    public String getUpdateWishlist(@RequestParam("name") String name, int userId, Model model) {
+    public String getUpdateWishlist(@RequestParam("name") String name,
+                                    @RequestParam("userid") int userId, Model model) {
     Wishlist wishlist = wishlistRepository.getWishlistbyName(name, userId);
     model.addAttribute("wishlist", wishlist);
     return "updateWishlist";
 }
 
+@GetMapping("/showWishlist")
+    public String showWishlist(@RequestParam("name") String name,
+                               @RequestParam("userid") int userId, Model model) {
+    Wishlist wishlist = wishlistRepository.getWishlistbyName(name, userId);
+    model.addAttribute(wishlist);
+return "wishlist";
+
+}
+
+@PostMapping("/deleteWishlist")
+    public String deleteWishlist(@RequestParam("name") String name,
+                                 @RequestParam("userid") int userId) {
+    wishlistRepository.deleteWishlist(name, userId);
+
+    return "redirect:/";
+}
 
 }

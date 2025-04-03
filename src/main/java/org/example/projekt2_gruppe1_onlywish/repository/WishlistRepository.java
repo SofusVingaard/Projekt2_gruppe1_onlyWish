@@ -5,6 +5,7 @@ import org.example.projekt2_gruppe1_onlywish.config.InitData;
 import org.example.projekt2_gruppe1_onlywish.model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -61,6 +62,18 @@ public class WishlistRepository {
 
     }
 
+    public void deleteWishlist( String name, int userId) {
+        String sql= "DELETE FROM wishlist WHERE name = ? AND user_id = ?";
 
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
 
+            statement.setString(1, name);
+            statement.setInt(2, userId);
+
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
