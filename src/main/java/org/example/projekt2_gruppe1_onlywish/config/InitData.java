@@ -18,9 +18,9 @@ public class InitData {
         userList.add(new User(2, "Charlie", 33, "CharlieBrown@gmail.com", "Snoopy6969"));
 
 
-public ArrayList<User> getUserList(){
+/*public ArrayList<User> getUserList(){
         return userList;
-    }
+    }*/
     }
 
 
