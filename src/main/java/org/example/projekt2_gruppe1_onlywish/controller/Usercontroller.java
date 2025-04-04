@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/users")
+
 @Controller
+@RequestMapping("/users")
 public class Usercontroller {
 
 @Autowired
@@ -23,7 +23,7 @@ public class Usercontroller {
     @RequestParam ("Password") String password) {
         User user = new User(name,age,email,password);
         userRepository.createUser(user);
-        return "User created successfully";
+        return "redirect:/";
     }
     @GetMapping("/getByEmail")
     public User getUserByEmail(@RequestParam String email) {
