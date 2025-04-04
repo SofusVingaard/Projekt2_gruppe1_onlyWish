@@ -39,8 +39,8 @@ public class WishlistRepository {
 
     }
     public Wishlist getWishlistbyName(String name, int userId){
-        Wishlist wishlist = new Wishlist();
         String sql = "SELECT * FROM wishlist WHERE name = ? AND user_id = ?";
+        Wishlist wishlist = null;
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){
@@ -50,8 +50,10 @@ public class WishlistRepository {
 
             try(ResultSet resultSet= statement.executeQuery()){
                 if(resultSet.next()){
+                    wishlist = new Wishlist();
                     wishlist.setId(resultSet.getInt("id"));
                     wishlist.setUserId(resultSet.getInt("user_id"));
+                    wishlist.setName(resultSet.getString("name"));
                     wishlist.setDescription(resultSet.getString("description"));
                 }
                 }
@@ -70,8 +72,8 @@ public class WishlistRepository {
 
             statement.setString(1, name);
             statement.setInt(2, userId);
-
             statement.executeUpdate();
+
         }catch (SQLException e){
             e.printStackTrace();
         }

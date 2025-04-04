@@ -27,8 +27,8 @@ public class UserRepository {
             statement.setString(4, user.getPassword());
 
             statement.executeUpdate();
-            ResultSet keys=statement.getGeneratedKeys();
-            if(keys.next()){
+            ResultSet keys = statement.getGeneratedKeys();
+            if (keys.next()) {
                 int generatedId = keys.getInt(1);
                 user.setId(generatedId);
             }
@@ -79,7 +79,7 @@ public class UserRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-return user;
+        return user;
 
     }
 
@@ -98,6 +98,30 @@ return user;
                 System.out.println("Password: " + resultSet.getString("password"));
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveCreateUser(User user) {
+        String sql = "INSERT INTO users (name, age, email, password) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            statement.setString(1, user.getName());
+            statement.setInt(2, user.getAge());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+
+            statement.executeUpdate();
+
+                /*ResultSet keys = statement.getGeneratedKeys();
+                if (keys.next()) {
+                    int generatedId = keys.getInt(1);
+                    user.setId(generatedId);
+                }
+*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
