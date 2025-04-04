@@ -2,6 +2,8 @@ package org.example.projekt2_gruppe1_onlywish.repository;
 
 import org.example.projekt2_gruppe1_onlywish.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -9,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Repository
 public class UserRepository {
 
     @Autowired
@@ -45,7 +48,7 @@ public class UserRepository {
                 user.setName(resultSet.getString("name"));
                 user.setAge(resultSet.getInt("age"));
                 user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
+                //user.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,12 +70,12 @@ public class UserRepository {
                 user.setName(resultSet.getString("name"));
                 user.setAge(resultSet.getInt("age"));
                 user.setEmail(resultSet.getString("emil"));
-                user.setPassword(resultSet.getString("password"));
+                //user.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-return user;
+        return user;
 
     }
 
@@ -88,7 +91,7 @@ return user;
                 System.out.println("Name: " + resultSet.getString("name"));
                 System.out.println("Email: " + resultSet.getString("email"));
                 System.out.println("Age: " + resultSet.getInt("age"));
-                System.out.println("Password: " + resultSet.getString("password"));
+                //System.out.println("Password: " + resultSet.getString("password"));
 
             }
         } catch (SQLException e) {
