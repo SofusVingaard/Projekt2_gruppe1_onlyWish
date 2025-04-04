@@ -17,6 +17,20 @@
         <a th:href="@{/login}">Login</a>
     </nav>
 </header>
+<main>
+    <section class = "profile">
+        <div class = "profile-container">
+            <img th:src="@{/../img/Profile_pic.jpeg}" alt="Profilbillede" class = "profile-image">
+
+            <div class = "profile-info">
+                <h1>Min Profil</h1>
+                <p>Navn: <Strong></Strong> </p>
+                <p>Email: <strong></strong> </p>
+                <a th:href="@{/edit-profile.html}" class = "edit">Rediger Profil</a>
+            </div>
+        </div>
+    </section>
+</main>
 
 <footer>
     <div class="footer-content">
