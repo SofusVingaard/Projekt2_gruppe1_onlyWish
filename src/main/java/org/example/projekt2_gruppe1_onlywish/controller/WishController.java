@@ -38,9 +38,9 @@ public class WishController {
     }
 
     @GetMapping("/getUpdateWish")
-    public String updateWish(@RequestParam("id")int id,String name){
+    public String updateWish(@RequestParam("id")int id){
         Wish wish = wishRepo.getAllWish(id);
-        name.addAttribute(wish);
+        wish.addAttribute(wish);
         return "updateWish";
     }
 
@@ -59,8 +59,8 @@ public class WishController {
     @GetMapping("/showWish")
     public String showWIsh(@RequestParam("ID")int id, String name){
 
-        Wish wish = wishRepo.getAllWish(id)
-        name.addAttributes(wish);
+        Wish wish = wishRepo.getAllWish(id);
+        wish.addAttribute(wish);
 
         return "showWish";
     }

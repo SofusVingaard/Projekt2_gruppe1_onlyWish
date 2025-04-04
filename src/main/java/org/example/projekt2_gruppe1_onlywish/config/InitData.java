@@ -22,6 +22,4 @@ public ArrayList<User> getUserList(){
         return userList;
     }
     }
-
-
 }
