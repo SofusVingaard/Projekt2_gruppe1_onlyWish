@@ -16,7 +16,12 @@ public class Usercontroller {
    private UserRepository userRepository;
 
     @PostMapping("/create")
-    public String createUser(@RequestBody User user) {
+    public String createUser
+    (@RequestParam("name")String name,
+    @RequestParam ("Age") int age,
+    @RequestParam ("Email") String email,
+    @RequestParam ("Password") String password) {
+        User user = new User(name,age,email,password);
         userRepository.createUser(user);
         return "User created successfully";
     }
