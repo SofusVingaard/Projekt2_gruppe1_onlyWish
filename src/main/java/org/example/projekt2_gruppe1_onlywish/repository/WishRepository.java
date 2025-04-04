@@ -110,4 +110,9 @@ public void delete(int id){
         e.printStackTrace();
         }
     }
+
+
+    public Wish getAllWish(int id) {
+        return null;
+    }
 }

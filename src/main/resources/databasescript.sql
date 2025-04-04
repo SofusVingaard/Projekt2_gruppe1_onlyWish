@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE wishlists (
                            id INT AUTO_INCREMENT PRIMARY KEY,
-                           user_id INT NOT NULL,
+                           user_id VARCHAR(250) NOT NULL,
                            name VARCHAR(100) NOT NULL,
                            description varchar(250),
                            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

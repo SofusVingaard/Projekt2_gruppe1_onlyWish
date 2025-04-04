@@ -27,7 +27,7 @@ WishlistRepository wishlistRepository;
 @PostMapping("/saveCreateWishlist")
     public String saveCreateWishlist(@RequestParam ("userid") int userId,
                                      @RequestParam ("name") String name,
-                                     @RequestParam ("required = false") String description) {
+                                     @RequestParam ( value = "description", required = false) String description) {
     Wishlist wishlist = new Wishlist( userId, name, description);
 
     wishlistRepository.saveWishlist(wishlist);
