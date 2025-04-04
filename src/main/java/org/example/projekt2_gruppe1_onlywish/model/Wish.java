@@ -95,4 +95,7 @@ public class Wish {
     public String getImage() {
         return image;
     }
+
+    public void addAttribute(Wish wish) {
+    }
 }

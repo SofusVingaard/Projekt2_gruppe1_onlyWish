@@ -22,6 +22,4 @@ public class InitData {
         return userList;
     }*/
     }
-
-
 }
