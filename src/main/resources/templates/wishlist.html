@@ -5,6 +5,8 @@
     <title>Wishlist</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/headerAndFooter.css">
+    <link rel="stylesheet" href="../static/CreateWishlist.css">
+
 </head>
 <body>
 <header>
@@ -17,11 +19,29 @@
         <a href="login.html">Login</a>
     </nav>
 </header>
-<main>
+    <main>
+        <div class="wishlist-container">
+            <h2>Ønskeliste</h2>
 
+            <button class="create-wishlist-btn" onclick="toggleForm()">Opret Ønskeliste</button>
+            <div id="wishlistForm" class="wishlist-form">
+                <div class="form-header">
+                    <h3>Ny Ønskeliste</h3>
+                    <button class="close-btn" onclick="toggleForm()">×</button>
+                </div>
 
+                <form id="wishlist-form" onsubmit="handleSubmit(event)">
+                    <label for="wishlist-name">Navn på ønskeliste:</label>
+                    <input type="text" id="wishlist-name" name="wishlist-name" required>
 
-</main>
+                    <label for="wishlist-description">Beskrivelse:</label>
+                    <textarea id="wishlist-description" name="wishlist-description" rows="4"></textarea>
+
+                    <button type="submit">Gem Ønskeliste</button>
+                </form>
+            </div>
+        </div>
+    </main>
 <footer>
     <div class="footer-content">
         <div class="footer-section about">
@@ -49,5 +69,23 @@
         <p th:text="'&copy; ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
     </div>
 </footer>
+
+<script>
+    const formElement = document.getElementById('wishlistForm');
+
+    function toggleForm() {
+        formElement.classList.toggle('show');
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        alert("Ønskelisten er gemt!");
+
+        document.getElementById('wishlist-form').reset();
+
+        formElement.classList.remove('show');
+    }
+</script>
 </body>
 </html>
