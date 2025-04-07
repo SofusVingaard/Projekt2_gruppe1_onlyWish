@@ -27,6 +27,7 @@ CREATE TABLE wishes (
                         url VARCHAR(500),
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         product_link VARCHAR(255),
+                        reserve BOOLEAN DEFAULT false,
                         FOREIGN KEY (wishlist_id) REFERENCES wishlists(id) ON DELETE CASCADE
 );
 

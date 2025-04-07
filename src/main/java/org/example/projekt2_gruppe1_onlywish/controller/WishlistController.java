@@ -30,7 +30,7 @@ WishlistRepository wishlistRepository;
                                      @RequestParam ( value = "description", required = false) String description) {
     Wishlist wishlist = new Wishlist( userId, name, description);
 
-    wishlistRepository.saveWishlist(wishlist);
+    wishlistRepository.saveCreateWishlist(wishlist);
     return "redirect:/";
 
 }
