@@ -170,31 +170,36 @@ public class UserRepository {
             return false; // Return false if any error occurs
         }
     }
-}
-    /*public User findByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email = ?";
-        User user = null;
+    public void updateUser(User user) {
+        String sql = "UPDATE users SET name = ?, age = ?, email = ?, password = ? WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, email);
+            statement.setString(1, user.getName());
+            statement.setInt(2, user.getAge());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+            statement.setInt(5, user.getId());
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    user = new User();
-                    user.setId(resultSet.getInt("id"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPassword(resultSet.getString("password"));
-                    // Set other user properties as needed
-                }
-            }
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            // In a real application, consider throwing a custom exception
         }
-
-        return user;
     }
 
-}*/
+    public void deleteUser(int id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
