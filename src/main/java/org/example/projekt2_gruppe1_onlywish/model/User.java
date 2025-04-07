@@ -6,7 +6,7 @@ import java.util.List;
 
 public class User {
     int id;
-    String name;
+    String userName;
     int age;
     String email;
     String password;
@@ -14,26 +14,26 @@ public class User {
     String image;
 
     //Constructors
-    public User(int id, String name, int age, String email, String password, String image) {
+    public User(int id, String userName, int age, String email, String password, String image) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
         wishlists = new ArrayList<>();
         this.image=image;
     }
-    public User(String name, int age, String email, String password) {
-        this.name = name;
+    public User(String userName, int age, String email, String password) {
+        this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
         this.wishlists = wishlists;
         image=null;
     }
-    public User(int id,String name, int age, String email, String password) {
+    public User(int id,String userName, int age, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
@@ -41,6 +41,11 @@ public class User {
         image=null;
     }
     public User(){
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     //Getters and setters
@@ -53,11 +58,11 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return userName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.userName = name;
     }
 
     public int getAge() {

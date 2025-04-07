@@ -1,5 +1,6 @@
 package org.example.projekt2_gruppe1_onlywish.repository;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.projekt2_gruppe1_onlywish.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -127,36 +128,73 @@ public class UserRepository {
         }
     }
 
-    public void updateUser(User user) {
-        String sql = "UPDATE users SET name = ?, age = ?, email = ?, password = ? WHERE id = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, user.getName());
-            statement.setInt(2, user.getAge());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getPassword());
-            statement.setInt(5, user.getId());
-
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteUser(int id) {
-        String sql = "DELETE FROM users WHERE id = ?";
+    public User getUserById(int id) {
+        String sql = "SELECT id, name, age, email FROM users WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
-            statement.executeUpdate();
+            ResultSet resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                return new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password")
+                );
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public boolean login(User user) {
+        String sql = "SELECT 1 FROM users WHERE email = ? AND password = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPassword());
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if any error occurs
+        }
     }
 }
+    /*public User findByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        User user = null;
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("id"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                    // Set other user properties as needed
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // In a real application, consider throwing a custom exception
+        }
+
+        return user;
+    }
+
+}*/
