@@ -98,4 +98,15 @@ public class Usercontroller {
             return "redirect:/mywishlist";
         }
     }
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute User user) {
+        userRepository.updateUser(user);
+        return "redirect:/";
+    }
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam int id) {
+        User user = userRepository.getUserbyId(id);
+        userRepository.deleteUser(id);
+        return "redirect:/";
+    }
 }

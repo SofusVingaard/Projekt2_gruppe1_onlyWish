@@ -27,8 +27,8 @@ public class WishRepository {
             while (resultSet.next()){
                 Wish wish = new Wish();
                 wish.setId(resultSet.getInt("id"));
-                wish.setImage("image");
-                wish.setUrl("url");
+                wish.setImageUrl("image");
+                wish.setProductlink("Link");
                 wish.setPrice(resultSet.getBigDecimal("price"));
                 wish.setDescription("description");
                 wish.setName("name");
@@ -49,8 +49,9 @@ public class WishRepository {
             statement.setString(2, wish.getName());
             statement.setString(3, wish.getDescription());
             statement.setBigDecimal(4, wish.getPrice());
-            statement.setString(5, wish.getUrl());
-            statement.setString(6, wish.getImage());
+            statement.setString(5, wish.getImageUrl());
+            statement.setString(6, wish.getProductlink());
+
             //statement.set(, wish.getWishlist());
 
             statement.execute();
@@ -80,8 +81,8 @@ public void delete(int id){
                 if (resultSet.next()){
                     wish = new Wish();
                     wish.setId(resultSet.getInt("id"));
-                    wish.setImage(resultSet.getString("image"));
-                    wish.setUrl(resultSet.getString("url"));
+                    wish.setImageUrl(resultSet.getString("image"));
+                    wish.setProductlink(resultSet.getString("url"));
                     wish.setPrice(resultSet.getBigDecimal("price"));
                     wish.setDescription(resultSet.getString("description"));
                     wish.setName(resultSet.getString("name"));
@@ -101,8 +102,8 @@ public void delete(int id){
         statement.setString(1, wish.getName());
         statement.setString(2, wish.getDescription());
         statement.setBigDecimal(3, wish.getPrice());
-        statement.setString(4, wish.getUrl());
-        statement.setString(5, wish.getImage());
+        statement.setString(4, wish.getImageUrl());
+        statement.setString(5, wish.getProductlink());
         statement.setInt(6, wish.getId());
         //statement.set(, wish.getWishlist());
         statement.executeUpdate();

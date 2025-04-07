@@ -33,6 +33,22 @@ public class Wish {
         this.productlink = productlink;
     }
 
+    public String getProductlink() {
+        return productlink;
+    }
+
+    public void setProductlink(String productlink) {
+        this.productlink = productlink;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
