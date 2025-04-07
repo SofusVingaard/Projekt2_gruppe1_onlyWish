@@ -56,6 +56,7 @@ public class Usercontroller {
         userRepository.updateUser(user);
         return "redirect:/";
     }
+    @PostMapping("/delete")
     public String deleteUser(@RequestParam int id) {
         User user = userRepository.getUserbyId(id);
         userRepository.deleteUser(id);

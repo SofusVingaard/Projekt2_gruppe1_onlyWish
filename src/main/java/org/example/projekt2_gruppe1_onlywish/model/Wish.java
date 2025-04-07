@@ -6,27 +6,11 @@ public class Wish {
     int id;
     String name;
     Wishlist wishlist;
-    String description;
     BigDecimal price;
-    String url;
-    String image;
+    String description;
+    String imageUrl;
+    String productlink;
 
-    public Wish(int id, String name, Wishlist wishlist, String description, BigDecimal price, String url, String image) {
-        this.id = id;
-        this.name = name;
-        this.wishlist = wishlist;
-        this.description = description;
-        this.price = price;
-        this.url = url;
-        this.image = image;
-    }
-
-    public Wish(String name, Wishlist wishlist, String description, BigDecimal price) {
-        this.name = name;
-        this.wishlist = wishlist;
-        this.description = description;
-        this.price = price;
-    }
 
     public Wish(int id, String name, Wishlist wishlist, String description, BigDecimal price) {
         this.id = id;
@@ -40,16 +24,17 @@ public class Wish {
 
     }
 
+    public Wish(String name, BigDecimal price, Wishlist wishlist, String description, String imageUrl, String productlink) {
+        this.name = name;
+        this.price = price;
+        this.wishlist = wishlist;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.productlink = productlink;
+    }
+
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setPrice(BigDecimal price) {
@@ -89,11 +74,7 @@ public class Wish {
     }
 
     public String getUrl() {
-        return url;
-    }
-
-    public String getImage() {
-        return image;
+        return imageUrl;
     }
 
     public void addAttribute(Wish wish) {
