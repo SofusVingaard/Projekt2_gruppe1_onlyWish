@@ -25,7 +25,13 @@ public class Usercontroller {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/create")
+    @GetMapping("/createuser")
+    public String createUser(Model model) {
+        model.addAttribute("user", new User());
+        return "createUser";
+    }
+
+    @PostMapping("/createuser")
     public String createUser
             (@RequestParam("name")String name,
              @RequestParam ("Age") int age,
