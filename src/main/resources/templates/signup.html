@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/headerAndFooter.css">
+  <link rel="stylesheet" href="../static/LoginAndSignup.css">
+</head>
+<body>
+<header>
+  <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
+  <img src="../img/logo.png" alt="Logo" class="logo">
+  <img src="../img/logoHover.jpg" alt="Logohover" class="logo">
+  <nav>
+    <a href="index.html">Forside</a>
+    <a href="profile.html">Min Profil</a>
+    <a href="wishlist.html">Ønskeliste</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+<main>
+  <section class="login-section">
+    <div class="login-box">
+      <h2>Opret Konto</h2>
+      <form th:action="@{/signup}" method="post">
+        <label for="name">Fulde navn</label>
+        <input type="text" id="name" name="name" placeholder="F.eks. Anna Jensen" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="din@email.dk" required>
+
+        <label for="password">Adgangskode</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+        <label for="confirmPassword">Bekræft adgangskode</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+
+        <button type="submit">Opret Konto</button>
+
+        <p class="signup-link">Har du allerede en konto? <a href="login.html">Log ind her</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h2>Om Os</h2>
+      <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h2>Nyttige Links</h2>
+      <ul>
+        <li><a href="index.html"> Forside</a></li>
+        <li><a href="profile.html">Min Profil</a></li>
+        <li><a href="wishlist.html">Ønskeliste</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h2>Kontakt Os</h2>
+      <p>Email: onlywish@kontakt.dk</p>
+      <p>Telefon: +45 12 34 56 78</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p text="'&copy; ' + year + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+  </div>
+</footer>
+</body>
+</html>

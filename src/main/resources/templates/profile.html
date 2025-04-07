@@ -8,25 +8,30 @@
 </head>
 <body>
 <header>
-    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
-    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+    <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
+    <img src="../img/logo.png" alt="Logo" class="logo">
     <nav>
-        <a th:href="@{/index}">Forside</a>
-        <a th:href="@{/profile}">Min Profil</a>
-        <a th:href="@{/wishlist}">Ønskeliste</a>
-        <a th:href="@{/login}">Login</a>
+        <a href="index.html">Forside</a>
+        <a href="profile.html">Min Profil</a>
+        <a href="wishlist.html">Ønskeliste</a>
+        <a href="login.html">Login</a>
     </nav>
 </header>
 <main>
     <section class = "profile">
         <div class = "profile-container">
-            <img th:src="@{/../img/Profile_pic.jpeg}" alt="Profilbillede" class = "profile-image">
-
+                <link rel="MinProfil.css">
+                <img src=../img/Profile_pic.jpeg alt="Profilbillede">
+                <link rel = "teamet.css">
+            </div>
             <div class = "profile-info">
                 <h1>Min Profil</h1>
                 <p>Navn: <Strong></Strong> </p>
                 <p>Email: <strong></strong> </p>
-                <a th:href="@{/edit-profile.html}" class = "edit">Rediger Profil</a>
+                <p>Tlf.nr: <strong></strong></p>
+                <p>Bio: <strong></strong></p>
+
+                <a href="edit-profile.html" class = "edit">Rediger Profil</a>
             </div>
         </div>
     </section>
@@ -37,14 +42,15 @@
         <div class="footer-section about">
             <h2>Om Os</h2>
             <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
+
         </div>
 
         <div class="footer-section links">
             <h2>Nyttige Links</h2>
             <ul>
-                <li><a th:href="@{/index}">Forside</a></li>
-                <li><a th:href="@{/profile}">Min Profil</a></li>
-                <li><a th:href="@{/wishlist}">Ønskeliste</a></li>
+                <li><a href="index.html">Forside</a></li>
+                <li><a href="profile.html">Min Profil</a></li>
+                <li><a href="wishlist.html">Ønskeliste</a></li>
             </ul>
         </div>
 
@@ -56,7 +62,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p th:text="'&copy; ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+        <p text="'&copy; ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
     </div>
 </footer>
 </body>

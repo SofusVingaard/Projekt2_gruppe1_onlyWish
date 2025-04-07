@@ -8,23 +8,23 @@
 </head>
 <body>
 <header>
-    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
     <h3>Onlywish</h3>
-    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+    <img src="../img/logo.png" alt="Logo" class="logo">
 
     <nav>
-        <a th:href="@{/index}">Forside</a>
-        <a th:href="@{/profile}">Min Profil</a>
-        <a th:href="@{/wishlist}">Ønskeliste</a>
-        <a th:href="@{/login}">Login</a>
+        <a href="index.html">Forside</a>
+        <a href="profile.html">Min Profil</a>
+        <a href="wishlist.html">Ønskeliste</a>
+        <a href="login.html">Login</a>
     </nav>
 </header>
 
 <main>
     <section class="welcome">
-        <h1 th:text="${welcomeMessage}">Velkommen til onlywish, din digitale ønskeliste</h1>
+        <h1 text="welcomeMessage">Velkommen til onlywish, din digitale ønskeliste</h1>
         <p>Oplev hvor nemt det nu er at lave ønskelister</p>
-        <a th:href="@{/about}" class="btn">Læs mere</a>
+        <a href="about" class="btn">Læs mere</a>
     </section>
 </main>
 
@@ -33,15 +33,15 @@
         <div class="footer-section about">
             <h2>Om Os</h2>
             <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
-            <button th:onclick="|window.location.href='@{/teamet}'|"> Mød teamet her </button>
+            <button onclick="window.location.href='teamet'|"> Mød teamet her </button>
         </div>
 
         <div class="footer-section links">
             <h2>Nyttige Links</h2>
             <ul>
-                <li><a th:href="@{/index}">Forside</a></li>
-                <li><a th:href="@{/profile}">Min Profil</a></li>
-                <li><a th:href="@{/wishlist}">Ønskeliste</a></li>
+                <li><a href="index.html">Forside</a></li>
+                <li><a href="profile.html">Min Profil</a></li>
+                <li><a href="wishlist.html">Ønskeliste</a></li>
             </ul>
         </div>
 
@@ -53,7 +53,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p th:text="'&copy; ' + ${year} + ' Onlywish | Alle rettigheder forbeholdes'">© 2025 Onlywish | Alle rettigheder forbeholdes</p>
+        <p th:text="2025 Onlywish | Alle rettigheder forbeholdes">© 2025 Onlywish | Alle rettigheder forbeholdes</p>
     </div>
 </footer>
 </body>
