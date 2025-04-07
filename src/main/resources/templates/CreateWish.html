@@ -2,15 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>login</title>
+  <title>OnlyWish</title>
   <link rel="stylesheet" href="../static/style.css">
   <link rel="stylesheet" href="../static/headerAndFooter.css">
-  <link rel="stylesheet" href="../static/LoginAndSignup.css">
 </head>
 <body>
 <header>
   <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
+  <h3>Onlywish</h3>
   <img src="../img/logo.png" alt="Logo" class="logo">
+
   <nav>
     <a href="index.html">Forside</a>
     <a href="profile.html">Min Profil</a>
@@ -18,30 +19,28 @@
     <a href="login.html">Login</a>
   </nav>
 </header>
+
 <main>
-  <section class="login-section">
-    <div class="login-box">
-      <h2>Opret Konto</h2>
-      <form th:action="@{/signup}" method="post">
-        <label for="name">Fulde navn</label>
-        <input type="text" id="name" name="name" placeholder="F.eks. Anna Jensen" required>
+  <form action="/saveCreateWish" method="POST">
+    <label for="Name">Name:</label>
+    <input type="text" id="Name" name="Name" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="din@email.dk" required>
+    <label for="Price">Price:</label>
+    <input type="text" id="Price" name="Price" required>
 
-        <label for="password">Adgangskode</label>
-        <input type="password" id="password" name="password" placeholder="••••••••" required>
+    <label for="Description">Description:</label>
+    <input type="text" id="Description" name="Description" required>
 
-        <label for="confirmPassword">Bekræft adgangskode</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+    <label for="ImageUrl">Image URL:</label>
+    <input type="text" id="ImageUrl" name="ImageUrl">
 
-        <button type="submit">Opret Konto</button>
+    <label for="ProductLink">Product Link:</label>
+    <input type="text" id="ProductLink" name="ProductLink">
 
-        <p class="signup-link">Har du allerede en konto? <a href="login.html">Log ind her</a></p>
-      </form>
-    </div>
-  </section>
+    <button type="submit">Create Wish</button>
+  </form>
 </main>
+
 <footer>
   <div class="footer-content">
     <div class="footer-section about">
@@ -52,7 +51,7 @@
     <div class="footer-section links">
       <h2>Nyttige Links</h2>
       <ul>
-        <li><a href="index.html"> Forside</a></li>
+        <li><a href="index.html">Forside</a></li>
         <li><a href="profile.html">Min Profil</a></li>
         <li><a href="wishlist.html">Ønskeliste</a></li>
       </ul>
@@ -66,7 +65,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p text="'&copy; ' + year + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+    <p text="2025 Onlywish | Alle rettigheder forbeholdes">© 2025 Onlywish | Alle rettigheder forbeholdes</p>
   </div>
 </footer>
 </body>
