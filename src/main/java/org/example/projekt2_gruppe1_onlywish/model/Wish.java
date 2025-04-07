@@ -10,7 +10,15 @@ public class Wish {
     String description;
     String imageUrl;
     String productlink;
+    boolean reserved;
 
+    public boolean isReserved() {
+        return reserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
+    }
 
     public Wish(int id, String name, Wishlist wishlist, String description, BigDecimal price) {
         this.id = id;

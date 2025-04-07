@@ -20,7 +20,7 @@ public class WishlistRepository {
     @Autowired
     private DataSource dataSource;
 
-    public void saveWishlist(Wishlist wishlist) {
+    public void saveCreateWishlist(Wishlist wishlist) {
         String sql = "INSERT INTO wishlist (user_id, name, description) VALUES (?, ?, ?)";
 
 
