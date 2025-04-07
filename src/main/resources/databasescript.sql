@@ -5,7 +5,7 @@ CREATE TABLE users (
                        id INT AUTO_INCREMENT PRIMARY KEY,
                        name VARCHAR(100)NOT NULL,
                        age INT NOT NULL,
-                       email VARCHAR(250) NOT NULL,
+                       email VARCHAR(250) NOT NULL unique,
                        password VARCHAR(250) NOT NULL,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -22,10 +22,11 @@ CREATE TABLE wishes (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         wishlist_id INT NOT NULL,
                         name VARCHAR(255) NOT NULL,
-                        description TEXT NULL,
-                        price DECIMAL(10,2) NULL,
-                        url VARCHAR(500) NULL,
+                        description TEXT,
+                        price DECIMAL(10,2),
+                        url VARCHAR(500),
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        product_link VARCHAR(255),
                         FOREIGN KEY (wishlist_id) REFERENCES wishlists(id) ON DELETE CASCADE
 );
 

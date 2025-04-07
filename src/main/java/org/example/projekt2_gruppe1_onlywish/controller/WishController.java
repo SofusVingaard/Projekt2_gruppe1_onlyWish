@@ -30,9 +30,11 @@ public class WishController {
         @RequestParam("Name") String name,
         @RequestParam("Wishlist") Wishlist wishlist,
         @RequestParam("Price") BigDecimal price,
-        @RequestParam("Description") String description){
+        @RequestParam("Description") String description,
+        @RequestParam ("Imageurl") String imageUrl,
+        @RequestParam ("Productlink") String productlink){
 
-        Wish wish = new Wish(name, wishlist, description, price);
+        Wish wish = new Wish(name, price, wishlist, description, imageUrl, productlink);
         wishRepo.save(wish);
         return "redirect:/";
     }
