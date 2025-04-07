@@ -56,7 +56,7 @@ public class Usercontroller {
         return "login";
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(
             @RequestParam String email,
             @RequestParam String password,
@@ -72,6 +72,23 @@ public class Usercontroller {
         } else {
             return "redirect:login";
         }
+    }*/
+    @PostMapping("/login")
+    public String login(
+            @RequestParam String email,
+            @RequestParam String password,
+            HttpSession session) {
+
+        // Get the FULL user from database
+        User user = userRepository.findByEmail(email); // You'll need to implement this
+
+        if (user != null && user.getPassword().equals(password)) {
+            // Store the complete user object in session
+            session.setAttribute("currentUser", user);
+            return "redirect:/users/profile";
+        } else {
+            return "redirect:/users/login?error";
+        }
     }
 
 
@@ -86,7 +103,7 @@ public class Usercontroller {
     public String profile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         model.addAttribute("user", user);
-        return "profile"; // your profile page name
+        return "profile";
     }
 
     @GetMapping ("/mywishlist")

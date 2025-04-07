@@ -202,4 +202,32 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
+    public User findByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        User user = null;
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("id"));
+                    user.setName(resultSet.getString("name"));
+                    user.setAge(resultSet.getInt("age"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                    // Add any other user fields from your database
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // In production, consider throwing a custom exception
+            // throw new DataAccessException("Error finding user by email", e);
+        }
+
+        return user;
+    }
 }

@@ -4,7 +4,7 @@ USE onlywish;
 CREATE TABLE users (
                        id INT AUTO_INCREMENT PRIMARY KEY,
                        name VARCHAR(100)NOT NULL,
-                       age INT NOT NULL,
+                       age INT,
                        email VARCHAR(250) NOT NULL unique,
                        password VARCHAR(250) NOT NULL,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
