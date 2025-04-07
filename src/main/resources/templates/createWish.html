@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>OnlyWish</title>
-  <link rel="stylesheet" href="../static/style.css">
-  <link rel="stylesheet" href="../static/headerAndFooter.css">
+  <link rel="stylesheet" href="/style.css" th:href="@{/css/style.css}">
+  <link rel="stylesheet" href="/headerAndFooter.css" th:href="@{/css/headerAndFooter.css}">
 </head>
 <body>
 <header>
@@ -46,7 +46,6 @@
     <div class="footer-section about">
       <h2>Om Os</h2>
       <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
-      <button onclick="window.location.href='teamet'|"> Mød teamet her </button>
     </div>
 
     <div class="footer-section links">

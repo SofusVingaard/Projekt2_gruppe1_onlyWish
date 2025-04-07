@@ -75,6 +75,15 @@ public class WishController {
         return "deleteWish";
     }
 
-
+    @PostMapping("/reserveWish")
+    public String reserveWish(@RequestParam("wishId") int wishId) {
+        wishRepo.reserveWish(wishId);
+        return "redirect/";
+    }
+    @PostMapping("/unReserveWish")
+    public String toggleReservation(@RequestParam("wishId") int wishId) {
+        wishRepo.unreserveWish(wishId);
+        return "redirect:/wish/showWish?id=" + wishId;
+    }
 
 }
