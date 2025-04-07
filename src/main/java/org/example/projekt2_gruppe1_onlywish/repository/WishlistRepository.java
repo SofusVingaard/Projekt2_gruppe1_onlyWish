@@ -12,11 +12,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class WishlistRepository {
-    @Autowired
-    InitData initData;
+    /*@Autowired
+    InitData initData;*/
     @Autowired
     private DataSource dataSource;
 
@@ -77,5 +79,34 @@ public class WishlistRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+    public List<Wishlist> getWishlistsByUserId(int userId) {
+        String sql = "SELECT * FROM wishlists WHERE user_id = ?";
+        List<Wishlist> wishlists = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, userId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Wishlist wishlist = new Wishlist();
+                    wishlist.setId(resultSet.getInt("id"));
+                    wishlist.setUserId(resultSet.getInt("user_id"));
+                    wishlist.setName(resultSet.getString("name"));
+                    wishlist.setDescription(resultSet.getString("description"));
+                    // Add any other wishlist fields from your database
+
+                    wishlists.add(wishlist);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // In production, consider throwing a custom exception
+            // throw new DataAccessException("Error finding wishlists by user ID", e);
+        }
+
+        return wishlists;
     }
 }
