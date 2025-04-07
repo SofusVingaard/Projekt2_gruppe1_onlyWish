@@ -167,34 +167,7 @@ public class UserRepository {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Return false if any error occurs
+            return false;
         }
     }
 }
-    /*public User findByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email = ?";
-        User user = null;
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, email);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    user = new User();
-                    user.setId(resultSet.getInt("id"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPassword(resultSet.getString("password"));
-                    // Set other user properties as needed
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // In a real application, consider throwing a custom exception
-        }
-
-        return user;
-    }
-
-}*/
