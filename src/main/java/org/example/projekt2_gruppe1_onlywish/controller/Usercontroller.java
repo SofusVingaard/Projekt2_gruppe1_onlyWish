@@ -17,10 +17,9 @@ public class Usercontroller {
 
     @GetMapping("/index")
     public String index(HttpSession session, Model model) {
-        User currentUser = (User) session.getAttribute("currentUser");
-        model.addAttribute("currentUser", currentUser);
-        return "index";
+        return "redirect:/signup";
     }
+
 
     @Autowired
     private UserRepository userRepository;
@@ -28,15 +27,16 @@ public class Usercontroller {
     @GetMapping("/createuser")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
-        return "createUser";
+        return "signup";
     }
+
 
     @PostMapping("/createuser")
     public String createUser
             (@RequestParam("name")String name,
-             @RequestParam ("Age") int age,
-             @RequestParam ("Email") String email,
-             @RequestParam ("Password") String password) {
+             @RequestParam ("age") int age,
+             @RequestParam ("email") String email,
+             @RequestParam ("password") String password) {
         User user = new User(name,age,email,password);
         userRepository.createUser(user);
         return "redirect:/";

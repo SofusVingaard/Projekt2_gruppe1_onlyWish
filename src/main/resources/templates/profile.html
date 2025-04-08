@@ -26,11 +26,23 @@
                 <link rel = "teamet.css">
             </div>
             <div class = "profile-info">
-                <h1>Min Profil</h1>
+                <div>
+                    <label>navn</label>
+                    <span th:text="${user.name}">Navn</span>
+                    </div>
+                <div>
+                    <label>alder</label>
+                    <span th:text="${user.age}">Navn</span>
+                </div>
+                <div>
+                    <label>email</label>
+                    <span th:text="${user.email}">Navn</span>
+                </div>
+               <!-- <h1>Min Profil</h1>
                 <p>Navn: <Strong></Strong> </p>
                 <p>Email: <strong></strong> </p>
                 <p>Tlf.nr: <strong></strong></p>
-                <p>Bio: <strong></strong></p>
+                <p>Bio: <strong></strong></p>-->
 
                 <a href="edit-profile.html" class = "edit">Rediger Profil</a>
             </div>
@@ -50,7 +62,8 @@
             <h2>Nyttige Links</h2>
             <ul>
                 <li><a href="index.html">Forside</a></li>
-                <li><a href="profile.html">Min Profil</a></li>                 ">Ønskeliste</a></li>
+                <li><a href="profile.html">Min Profil</a></li>
+                <li><a th:href="@{/wishlist/my-wishlists}" >Ønskeliste</a></li>
             </ul>
         </div>
 

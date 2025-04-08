@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/wishlists")
+@RequestMapping("/wishlist")
 public class WishlistController {
 
 @Autowired
@@ -57,7 +57,7 @@ WishlistRepository wishlistRepository;
 
         List<Wishlist> wishlists = wishlistRepository.getWishlistsByUserId(currentUser.getId());
         model.addAttribute("wishlists", wishlists);
-        return "wishlists";
+        return "wishlist";
     }
 
 
