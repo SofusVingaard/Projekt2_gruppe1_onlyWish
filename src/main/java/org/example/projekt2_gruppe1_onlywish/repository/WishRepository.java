@@ -151,4 +151,42 @@ public class WishRepository {
         }
 
     }
+    public void addContribution(int wishId, int userId, BigDecimal amount) {
+        String sql = "INSERT INTO contribution (wish_id, user_id, amount) VALUES (?, ?, ?)";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, wishId);
+            statement.setInt(2, userId);
+            statement.setBigDecimal(3, amount);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public BigDecimal getTotalContributions(int wishId) {
+        String sql = "SELECT SUM(amount) FROM contribution WHERE wish_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, wishId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getBigDecimal(1) != null ? rs.getBigDecimal(1) : BigDecimal.ZERO;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return BigDecimal.ZERO;
+    }
+    public BigDecimal getAmountMissing(int wishId) {
+        Wish wish = getWishById(wishId);
+        BigDecimal total = getTotalContributions(wishId);
+        if (wish != null && wish.getPrice() != null) {
+            return wish.getPrice().subtract(total != null ? total : BigDecimal.ZERO);
+        }
+        return BigDecimal.ZERO;
+    }
 }
