@@ -81,13 +81,13 @@ public class WishController {
 
         wishRepo.delete(id);
 
-        return "deleteWish";
+        return "redirect:/wishlist/showWishlist?wishlistId=" + id;
     }
 
     @PostMapping("/reserveWish")
     public String reserveWish(@RequestParam("wishId") int wishId) {
         wishRepo.reserveWish(wishId);
-        return "redirect/";
+        return "redirect:/wishlist";
     }
     @PostMapping("/unReserveWish")
     public String toggleReservation(@RequestParam("wishId") int wishId) {

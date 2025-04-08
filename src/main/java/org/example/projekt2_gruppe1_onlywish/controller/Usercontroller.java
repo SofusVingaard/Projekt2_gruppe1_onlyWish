@@ -39,7 +39,7 @@ public class Usercontroller {
              @RequestParam ("password") String password) {
         User user = new User(name,age,email,password);
         userRepository.createUser(user);
-        return "redirect:/";
+        return "redirect:/users/profile";
     }
     @GetMapping("/getByEmail")
     public User getUserByEmail(@RequestParam String email) {
@@ -109,7 +109,7 @@ public class Usercontroller {
     public String profile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         model.addAttribute("user", user);
-        return "profile";
+        return "redirect:/users/profile";
     }
 
     @GetMapping ("/mywishlist")
@@ -118,18 +118,18 @@ public class Usercontroller {
         if (currentUser == null) {
             return "redirect:/login";
         } else{
-            return "redirect:/mywishlist";
+            return "redirect:/wishlist";
         }
     }
     @PostMapping("/update")
     public String updateUser(@ModelAttribute User user) {
         userRepository.updateUser(user);
-        return "redirect:/";
+        return "redirect:/users/profile";
     }
     @PostMapping("/delete")
     public String deleteUser(@RequestParam int id) {
         User user = userRepository.getUserbyId(id);
         userRepository.deleteUser(id);
-        return "redirect:/";
+        return "redirect:/index";
     }
 }
