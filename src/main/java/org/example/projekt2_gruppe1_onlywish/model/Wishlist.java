@@ -17,8 +17,6 @@ public class Wishlist {
         this.description = description;
     }
 
-
-
     public Wishlist(int id, int userId, String name, String shareLink) {
         this.id = id;
         this.userId = userId;
@@ -35,8 +33,6 @@ public class Wishlist {
     public void setId(int id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
