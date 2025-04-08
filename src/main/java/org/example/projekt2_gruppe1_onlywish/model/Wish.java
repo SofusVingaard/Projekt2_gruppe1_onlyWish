@@ -5,25 +5,17 @@ import java.math.BigDecimal;
 public class Wish {
     int id;
     String name;
-    Wishlist wishlist;
+    int wishlistId;
     BigDecimal price;
     String description;
     String imageUrl;
     String productlink;
-    boolean reserved;
 
-    public boolean isReserved() {
-        return reserved;
-    }
 
-    public void setReserved(boolean reserved) {
-        this.reserved = reserved;
-    }
-
-    public Wish(int id, String name, Wishlist wishlist, String description, BigDecimal price) {
+    public Wish(int id, String name, int wishlistId, String description, BigDecimal price) {
         this.id = id;
         this.name = name;
-        this.wishlist = wishlist;
+        this.wishlistId = wishlistId;
         this.description = description;
         this.price = price;
     }
@@ -32,10 +24,10 @@ public class Wish {
 
     }
 
-    public Wish(String name, BigDecimal price, Wishlist wishlist, String description, String imageUrl, String productlink) {
+    public Wish(String name, BigDecimal price, int wishlistId, String description, String imageUrl, String productlink) {
         this.name = name;
         this.price = price;
-        this.wishlist = wishlist;
+        this.wishlistId = wishlistId;
         this.description = description;
         this.imageUrl = imageUrl;
         this.productlink = productlink;
@@ -69,9 +61,6 @@ public class Wish {
         this.description = description;
     }
 
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -85,9 +74,6 @@ public class Wish {
         return name;
     }
 
-    public Wishlist getWishlist() {
-        return wishlist;
-    }
 
     public String getDescription() {
         return description;
@@ -102,5 +88,13 @@ public class Wish {
     }
 
     public void addAttribute(Wish wish) {
+    }
+
+    public int getWishlistId() {
+        return wishlistId;
+    }
+
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
     }
 }

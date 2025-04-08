@@ -109,4 +109,23 @@ public class WishlistRepository {
 
         return wishlists;
     }
+    public Wishlist getWishlistById(int id) {
+        String sql = "SELECT * FROM wishlists WHERE id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Wishlist(
+                        rs.getInt("id"),
+                        rs.getInt("user_id"),
+                        rs.getString("name"),
+                        rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

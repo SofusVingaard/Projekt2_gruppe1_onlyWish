@@ -1,18 +1,21 @@
 package org.example.projekt2_gruppe1_onlywish.controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.example.projekt2_gruppe1_onlywish.model.User;
 import org.example.projekt2_gruppe1_onlywish.model.Wish;
 import org.example.projekt2_gruppe1_onlywish.model.Wishlist;
 import org.example.projekt2_gruppe1_onlywish.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
 @Controller
+@RequestMapping("/wish")
 public class WishController {
 
     @Autowired
@@ -21,44 +24,49 @@ public class WishController {
     //@Autowired
     //WishService wishService;
 
-    @GetMapping("/getCreateWish")
+    @GetMapping("/getcreatewish")
     public String createWish(){
-        return "redirect:/";
+        return "createWish";
     }
 
     @PostMapping("/saveCreateWish")
     public String postCreateWish(
-        @RequestParam("Name") String name,
-        @RequestParam("Wishlist") Wishlist wishlist,
-        @RequestParam("Price") BigDecimal price,
-        @RequestParam("Description") String description,
-        @RequestParam ("Imageurl") String imageUrl,
-        @RequestParam ("Productlink") String productlink){
+        @RequestParam("name") String name,
+        @RequestParam("wishlistId") int wishlistId,
+        @RequestParam(required = false ) BigDecimal price,
+        @RequestParam(required = false) String description,
+        @RequestParam (required = false) String imageUrl,
+        @RequestParam (required = false) String productlink,
+        HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
 
-        Wish wish = new Wish(name, price, wishlist, description, imageUrl, productlink);
+
+        Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
         wishRepo.save(wish);
-        return "redirect:/wishlist";
-    }
+        return "redirect:/wishlist/showWishlist?wishlistId=" + wishlistId;    }
 
     @GetMapping("/getUpdateWish")
     public String updateWish(@RequestParam("id")int id){
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);
-        return "redirect:/wishlist";
+        return "updateWish";
     }
 
     @PostMapping("/saveUpdateWish")
     public String postSaveUpdate(
             @RequestParam("ID") int id,
             @RequestParam("Name") String name,
-            @RequestParam("Wishlist") Wishlist wishlist,
+            @RequestParam("Wishlist") int wishlist,
             @RequestParam("Price") BigDecimal price,
             @RequestParam("Description") String description){
 
         Wish wish = new Wish(id, name, wishlist, description, price);
-        return "redirect:/wishlist";
+        return "redirect/";
     }
-/*
+
     @GetMapping("/showWish")
     public String showWIsh(@RequestParam("ID")int id, String name){
 
@@ -67,44 +75,24 @@ public class WishController {
 
         return "showWish";
     }
-*/
+
     @PostMapping("/deleteWish")
     public String deleteWish(@RequestParam("id")int id){
 
         wishRepo.delete(id);
 
-        return "redirect:/wishlist";
+        return "deleteWish";
     }
 
     @PostMapping("/reserveWish")
     public String reserveWish(@RequestParam("wishId") int wishId) {
         wishRepo.reserveWish(wishId);
-        return "redirect:/wishlist";
+        return "redirect/";
     }
     @PostMapping("/unReserveWish")
     public String toggleReservation(@RequestParam("wishId") int wishId) {
         wishRepo.unreserveWish(wishId);
-        return "redirect:/wishlist" + wishId;
+        return "redirect:/wish/showWish?id=" + wishId;
     }
 
-    @PostMapping("/contribute")
-    public String contributeToWish(@RequestParam("wishId") int wishId,
-                                   @RequestParam("userId") int userId,
-                                   @RequestParam("amount") BigDecimal amount) {
-
-        wishRepo.addContribution(wishId, userId, amount);
-        return "redirect:/wishlist" + wishId;
-    }
-    @GetMapping("/showWish")
-    public String showWish(@RequestParam("ID") int id, Model model) {
-        Wish wish = wishRepo.getWishById(id);
-        BigDecimal collected = wishRepo.getTotalContributions(id);
-        BigDecimal missing = wishRepo.getAmountMissing(id);
-
-        model.addAttribute("wish", wish);
-        model.addAttribute("collected", collected);
-        model.addAttribute("missing", missing);
-
-        return "redirect:/wishlist";
-    }
 }
