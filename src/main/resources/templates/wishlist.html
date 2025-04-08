@@ -39,6 +39,21 @@
 
                     <button type="submit">Gem Ønskeliste</button>
                 </form>
+
+                <div>
+                    <div class="showwishlist" th:each="wishlist : ${wishlists}">
+                        <div>
+                            <label>Navn:</label>
+                            <span th:text="${wishlist.name}">ID</span>
+                        </div>
+                        <div>
+                            <label>Beskrivelse:</label>
+                            <span th:text="${wishlist.description}">ID</span>
+                        </div>
+                        <a th:href="@{/wishlist/createwish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>

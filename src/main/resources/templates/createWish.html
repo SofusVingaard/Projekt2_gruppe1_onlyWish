@@ -21,24 +21,27 @@
 </header>
 
 <main>
-  <form action="/saveCreateWish" method="POST">
-    <label for="Name">Name:</label>
-    <input type="text" id="Name" name="Name" required>
+  <form th:action="@{/wish/saveCreateWish}" method="post">
+    <input type="hidden" name="wishlistId" th:value="${wishlist.id}" />
 
-    <label for="Price">Price:</label>
-    <input type="text" id="Price" name="Price" required>
+    <label>Navn:</label>
+    <input type="text" name="name" required>
 
-    <label for="Description">Description:</label>
-    <input type="text" id="Description" name="Description" required>
+    <label>Pris:</label>
+    <input type="number" name="price" step="0.01" required>
 
-    <label for="ImageUrl">Image URL:</label>
-    <input type="text" id="ImageUrl" name="ImageUrl">
+    <label>Beskrivelse:</label>
+    <textarea name="description"></textarea>
 
-    <label for="ProductLink">Product Link:</label>
-    <input type="text" id="ProductLink" name="ProductLink">
+    <label>Billede URL:</label>
+    <input type="text" name="imageurl">
 
-    <button type="submit">Create Wish</button>
+    <label>Produktlink:</label>
+    <input type="text" name="productlink">
+
+    <button type="submit">Gem Ønske</button>
   </form>
+
 </main>
 
 <footer>

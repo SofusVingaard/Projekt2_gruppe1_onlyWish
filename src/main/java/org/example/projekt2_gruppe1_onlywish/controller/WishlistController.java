@@ -54,7 +54,6 @@ WishlistRepository wishlistRepository;
         if (currentUser == null) {
             return "redirect:/users/login";
         }
-
         List<Wishlist> wishlists = wishlistRepository.getWishlistsByUserId(currentUser.getId());
         model.addAttribute("wishlists", wishlists);
         return "wishlist";
@@ -77,5 +76,15 @@ return "wishlist";
 
     return "redirect:/";
 }
+
+    @GetMapping("/createwish")
+    public String showCreateWishForm(@RequestParam("wishlistId") int wishlistId, Model model) {
+        Wishlist wishlist = wishlistRepository.getWishlistById(wishlistId);
+        if (wishlist == null) {
+            return "redirect:/wishlist/my-wishlists";
+        }
+        model.addAttribute("wishlist", wishlist);
+        return "createWish";
+    }
 
 }

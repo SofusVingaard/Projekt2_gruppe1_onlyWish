@@ -43,18 +43,16 @@ public class WishRepository {
     }
 
     public void save(Wish wish) {
-        String sql = "INSERT INTO wish (name, wishlist, price, description) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO wishes (wishlist_id, name, description, price, url, productlink) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, wish.getId());
+            statement.setInt(1, wish.getWishlistId());
             statement.setString(2, wish.getName());
             statement.setString(3, wish.getDescription());
             statement.setBigDecimal(4, wish.getPrice());
             statement.setString(5, wish.getImageUrl());
             statement.setString(6, wish.getProductlink());
-
-            //statement.set(, wish.getWishlist());
 
             statement.execute();
         } catch (SQLException e) {
@@ -150,43 +148,5 @@ public class WishRepository {
             e.printStackTrace();
         }
 
-    }
-    public void addContribution(int wishId, int userId, BigDecimal amount) {
-        String sql = "INSERT INTO contribution (wish_id, user_id, amount) VALUES (?, ?, ?)";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, wishId);
-            statement.setInt(2, userId);
-            statement.setBigDecimal(3, amount);
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public BigDecimal getTotalContributions(int wishId) {
-        String sql = "SELECT SUM(amount) FROM contribution WHERE wish_id = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, wishId);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getBigDecimal(1) != null ? rs.getBigDecimal(1) : BigDecimal.ZERO;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return BigDecimal.ZERO;
-    }
-    public BigDecimal getAmountMissing(int wishId) {
-        Wish wish = getWishById(wishId);
-        BigDecimal total = getTotalContributions(wishId);
-        if (wish != null && wish.getPrice() != null) {
-            return wish.getPrice().subtract(total != null ? total : BigDecimal.ZERO);
-        }
-        return BigDecimal.ZERO;
     }
 }
