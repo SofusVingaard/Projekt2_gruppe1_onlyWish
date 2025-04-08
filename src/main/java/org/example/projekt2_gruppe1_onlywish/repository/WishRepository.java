@@ -43,7 +43,7 @@ public class WishRepository {
     }
 
     public void save(Wish wish) {
-        String sql = "INSERT INTO wishes (wishlist_id, name, description, price, url, productlink) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wishes (wishlist_id, name, description, price, url, product_link) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
