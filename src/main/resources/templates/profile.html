@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" href="../static/MinProfil.css" th:href="@{/css/MinProfil.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/MinProfil.css}">
 </head>
 <body>
 <header>
-    <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
-    <img src="../img/logo.png" alt="Logo" class="logo">
+    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
     <nav>
         <a href="index.html">Forside</a>
         <a href="profile.html">Min Profil</a>
@@ -21,30 +21,26 @@
 <main>
     <section class = "profile-container">
         <div class = "person">
-                <link rel="MinProfil.css">
-                <img src=../img/Profile_pic.jpeg alt="Profilbillede">
-                <link rel = "teamet.css">
+                <img th:src="@{/img/Profile_pic.jpeg}" alt="Profilbillede">
+                <link rel = ".teamet.css">
             </div>
             <div class = "profile-info">
                 <div class = tekstboks>
                     <div>
-                        <label>navn</label>
-                        <span th:text="${user.name}">Navn</span>
+                        <label>Navn:</label>
+                        <p> <span th:text="${user.name}"></span></p>
                     </div>
                     <div>
-                        <label>alder</label>
-                        <span th:text="${user.age}">Navn</span>
+                        <label>Alder:</label>
+                        <p><span th:text="${user.age}"></span></p>
                     </div>
                     <div>
-                        <label>email</label>
-                        <span th:text="${user.email}">Navn</span>
+                        <label>Email:</label>
+                        <p><span th:text="${user.email}"></span></p>
                     </div>
+                    <a th:href="@{/edit-profile}" class="edit">Rediger Profil</a>
                 </div>
                 </div>
-
-                <a href="edit-profile.html" class = "edit">Rediger Profil</a>
-            </div>
-        </div>
     </section>
 </main>
 <footer>
@@ -58,8 +54,8 @@
         <div class="footer-section links">
             <h2>Nyttige Links</h2>
             <ul>
-                <li><a href="index.html">Forside</a></li>
-                <li><a href="profile.html">Min Profil</a></li>                 ">Ønskeliste</a></li>
+                <li><a th:href="@{index.html}">Forside</a></li>
+                <li><a th:href="@{profile.html}">Min Profil</a></li>                 ">Ønskeliste</a></li>
             </ul>
         </div>
 
@@ -71,7 +67,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p text="'&copy; ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+        <p th:text="'© ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">
     </div>
 </footer>
 </body>
