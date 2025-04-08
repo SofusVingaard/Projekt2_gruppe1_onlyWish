@@ -30,12 +30,12 @@
                     <button class="close-btn" onclick="toggleForm()">×</button>
                 </div>
 
-                <form id="wishlist-form" onsubmit="handleSubmit(event)">
-                    <label for="wishlist-name">Navn på ønskeliste:</label>
-                    <input type="text" id="wishlist-name" name="wishlist-name" required>
+                <form th:action="@{/wishlist/create}" method="post" id="wishlist-form">
+                    <label for="name">Navn på ønskeliste:</label>
+                    <input type="text" id="name" name="name" required>
 
-                    <label for="wishlist-description">Beskrivelse:</label>
-                    <textarea id="wishlist-description" name="wishlist-description" rows="4"></textarea>
+                    <label for="description">Beskrivelse:</label>
+                    <textarea id="description" name="description" rows="4"></textarea>
 
                     <button type="submit">Gem Ønskeliste</button>
                 </form>

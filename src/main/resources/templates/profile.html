@@ -14,8 +14,8 @@
     <nav>
         <a href="index.html">Forside</a>
         <a href="profile.html">Min Profil</a>
-        <a href="wishlist.html">Ønskeliste</a>
-        <a href="login.html">Login</a>
+        <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+       <!-- <a href="login.html">Login</a>-->
     </nav>
 </header>
 <main>
@@ -27,11 +27,19 @@
             </div>
             <div class = "profile-info">
                 <div class = tekstboks>
-                    <h1>Min Profil</h1>
-                    <p class = "line">Navn: <Strong></Strong> </p>
-                    <p class = "line">Email: <strong></strong> </p>
-                    <p class = "line">Tlf.nr: <strong></strong></p>
-                    <p class = "line">Bio: <strong></strong></p>
+                    <div>
+                        <label>navn</label>
+                        <span th:text="${user.name}">Navn</span>
+                    </div>
+                    <div>
+                        <label>alder</label>
+                        <span th:text="${user.age}">Navn</span>
+                    </div>
+                    <div>
+                        <label>email</label>
+                        <span th:text="${user.email}">Navn</span>
+                    </div>
+                </div>
                 </div>
 
                 <a href="edit-profile.html" class = "edit">Rediger Profil</a>
@@ -39,7 +47,6 @@
         </div>
     </section>
 </main>
-
 <footer>
     <div class="footer-content">
         <div class="footer-section about">

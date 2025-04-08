@@ -40,12 +40,12 @@ WishlistRepository wishlistRepository;
 
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/users/login";
+            return "redirect:/login";
         }
 
         Wishlist wishlist = new Wishlist(currentUser.getId(), name, description);
         wishlistRepository.saveWishlist(wishlist);
-        return "redirect:/users/profile";
+        return "wishlist";
     }
 
     @GetMapping("/my-wishlists")

@@ -23,7 +23,7 @@ public class WishlistRepository {
     private DataSource dataSource;
 
     public void saveWishlist(Wishlist wishlist) {
-        String sql = "INSERT INTO wishlist (user_id, name, description) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO wishlists (user_id, name, description) VALUES (?, ?, ?)";
 
 
         try(Connection connection = dataSource.getConnection();
