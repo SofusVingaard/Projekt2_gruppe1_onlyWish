@@ -141,7 +141,7 @@ public class Usercontroller {
     public String getProfile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         model.addAttribute("user", user);
-        if(user != null) {
+        if(user == null) {
             return "redirect:/users/login";
         }
         return "profile";
