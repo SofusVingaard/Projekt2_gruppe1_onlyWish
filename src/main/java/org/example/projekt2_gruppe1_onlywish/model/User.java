@@ -22,7 +22,6 @@ public class User {
         this.password = password;
         wishlists = new ArrayList<>();
         this.image=image;
-
     }
     public User(String userName, int age, String email, String password) {
         this.userName = userName;
