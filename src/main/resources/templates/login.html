@@ -5,17 +5,18 @@
     <title>login</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" href="../static/css/LoginAndSignup.css" th:href="@{/css/LoginAndSignup.css}">
+    <link rel="stylesheet" href="../static/css/loginAndSignup.css" th:href="@{/css/loginAndSignup.css}">
 </head>
 <body>
 <header>
     <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
     <img src="../img/logo.png" alt="Logo" class="logo">
     <nav>
-        <a href="index.html">Forside</a>
-        <a href="profile.html">Min Profil</a>
-        <a href="wishlist.html">Ønskeliste</a>
-        <a href="login.html">Login</a>
+        <a th:href="@{/}">Forside</a>
+        <a th:href="@{/users/profileheader}">Min Profil</a>
+        <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+        <a th:href="@{/users/login}">Login</a>
+        <a th:href="@{/users/createuser}">Opret bruger</a>
     </nav>
 </header>
 <main>
