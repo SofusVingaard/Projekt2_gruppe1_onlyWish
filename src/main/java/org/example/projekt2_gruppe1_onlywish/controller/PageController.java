@@ -14,24 +14,11 @@ import java.util.ArrayList;
 @Controller
 public class PageController {
 
-    @Autowired
-    InitData initData;
+    @GetMapping("/profile")
+    public String profile(Model model) {
 
-    @Autowired
-    UserRepository userRepo;
-
-
-
-    @GetMapping("/")
-    public String mainPage(Model model) {
-        // Ingen grund til at oprette nyt Arraylist carList da vi bare kan kalde den neden under i en linje
-        //ArrayList<Car> carList = new ArrayList<>();
-        ArrayList<Wish> carList= carRepo.getAllCars();
-        model.addAttribute("carList", carList);
-
-
-        return "index";
     }
-}
 
- */
+
+    }*/
+

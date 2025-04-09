@@ -17,7 +17,7 @@ public class Usercontroller {
 
     @GetMapping("/index")
     public String index(HttpSession session, Model model) {
-        return "redirect:/signup";
+        return "redirect:/users/createuser";  // Corrected path
     }
 
 
@@ -108,15 +108,19 @@ public class Usercontroller {
     @GetMapping("/profile")
     public String profile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
+        if (user == null) {
+            return "redirect:/users/login";  // Redirect to login if no user is found
+        }
         model.addAttribute("user", user);
-        return "redirect:/users/profile";
+        return "profile";  // Render the profile page
     }
+
 
     @GetMapping ("/mywishlist")
     public String getMyWishlist(HttpSession session, Model model) {
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/login";
+            return "redirect:/users/login";
         } else{
             return "redirect:/wishlist";
         }
@@ -131,5 +135,15 @@ public class Usercontroller {
         User user = userRepository.getUserbyId(id);
         userRepository.deleteUser(id);
         return "redirect:/index";
+    }
+
+    @GetMapping("/profileheader")
+    public String getProfile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        model.addAttribute("user", user);
+        if(user != null) {
+            return "redirect:/users/login";
+        }
+        return "profile";
     }
 }
