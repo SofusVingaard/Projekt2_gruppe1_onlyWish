@@ -7,10 +7,12 @@ import org.example.projekt2_gruppe1_onlywish.model.Wishlist;
 import org.example.projekt2_gruppe1_onlywish.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 
@@ -25,28 +27,41 @@ public class WishController {
     //WishService wishService;
 
     @GetMapping("/getcreatewish")
-    public String createWish(){
-        return "createWish";
+    public String createWish(Model model) {
+        return "createWish";  // Your HTML page
     }
+
 
     @PostMapping("/saveCreateWish")
     public String postCreateWish(
-        @RequestParam("name") String name,
-        @RequestParam("wishlistId") int wishlistId,
-        @RequestParam(required = false ) BigDecimal price,
-        @RequestParam(required = false) String description,
-        @RequestParam (required = false) String imageUrl,
-        @RequestParam (required = false) String productlink,
-        HttpSession session) {
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam("wishlistId") int wishlistId,
+            @RequestParam(required = false) BigDecimal price,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) String imageUrl,
+            @RequestParam(required = false) String productlink,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/login";
+            return "redirect:/users/login";
         }
 
+        if (name == null || name.trim().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Wish name is required");
+            return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
+        }
 
-        Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
-        wishRepo.save(wish);
-        return "redirect:/wishlist/showWishlist?wishlistId=" + wishlistId;    }
+        try {
+            Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
+            wishRepo.save(wish);
+            return "redirect:/wishlist/showWishlist?wishlistId=" + wishlistId;
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error creating wish: " + e.getMessage());
+            return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
+        }
+    }
 
     @GetMapping("/getUpdateWish")
     public String updateWish(@RequestParam("id")int id){

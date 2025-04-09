@@ -24,25 +24,25 @@
   <form th:action="@{/wish/saveCreateWish}" method="post">
     <input type="hidden" name="wishlistId" th:value="${wishlist.id}" />
 
-    <label>Navn:</label>
-    <input type="text" name="name" required>
+    <label for="name">Navn:</label>
+    <input type="text" id="name" name="name" placeholder="Indtast navn på ønske" required />
 
-    <label>Pris:</label>
-    <input type="number" name="price" step="0.01" required>
+    <label for="price">Pris:</label>
+    <input type="number" id="price" name="price" placeholder="Indtast prisen" />
 
-    <label>Beskrivelse:</label>
-    <textarea name="description"></textarea>
+    <label for="description">Beskrivelse:</label>
+    <textarea id="description" name="description" placeholder="Indtast beskrivelse"></textarea>
 
-    <label>Billede URL:</label>
-    <input type="text" name="imageurl">
+    <label for="imageUrl">Image URL:</label>
+    <input type="text" id="imageUrl" name="imageUrl" placeholder="Indtast image URL" />
 
-    <label>Produktlink:</label>
-    <input type="text" name="productlink">
+    <label for="productlink">Product Link:</label>
+    <input type="text" id="productlink" name="productlink" placeholder="Indtast product link" />
 
     <button type="submit">Gem Ønske</button>
   </form>
-
 </main>
+
 
 <footer>
   <div class="footer-content">
