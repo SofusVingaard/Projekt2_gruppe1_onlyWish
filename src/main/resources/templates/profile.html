@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" th:href="@{/css/MinProfil.css}">
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+    <link rel="stylesheet" th:href="@{/static/headerAndFooter.css}">
+    <link rel="stylesheet" th:href="@{/static/MinProfil.css}">
 </head>
 <body>
 <header>
-    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
-    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+    <img th:src="@{/static/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/static/img/logo.png}" alt="Logo" class="logo">
     <nav>
         <a th:href="@{/}">Forside</a>
         <a th:href="@{/users/profileheader}">Min Profil</a>
@@ -20,7 +20,7 @@
 <main>
     <section class = "profile-container">
         <div class = "person">
-                <img th:src="@{/img/Profile_pic.jpeg}" alt="Profilbillede">
+                <img th:src="@{/static/img/Profile_pic.jpeg}" alt="Profilbillede">
                 <link rel = ".teamet.css">
             </div>
             <div class = "profile-info">

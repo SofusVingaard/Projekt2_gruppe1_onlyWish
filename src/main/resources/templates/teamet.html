@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>teamet</title>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" href="../static/css/teamet.css" th:href="@{/css/teamet.css}">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/static/style.css}">
+    <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/static/headerAndFooter.css}">
+    <link rel="stylesheet" href="../static/css/teamet.css" th:href="@{/static/teamet.css}">
 </head>
 <body>
 <header>
-    <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
-    <h3>Onlywish</h3>
-    <img src="../img/logo.png" alt="Logo" class="logo">
+    <img th:src="@{/static/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/static/img/logo.png}" alt="Logo" class="logo">
 
     <nav>
         <a th:href="@{/}">Forside</a>
@@ -26,28 +25,28 @@
 <h4>Hvem er vi? </h4>
 <div class="Profiler">
     <div class="person">
-        <a href="https://www.instagram.com/chri66j9/"><img src="../img/Christoffer.jpeg"></a>
+        <a href="https://www.instagram.com/chri66j9/"><img src="../static/css/img/Christoffer.jpeg"></a>
         <h4>Christoffer Holm Nielsen</h4>
         <h4>Founder/Owner</h4>
         <p>"Da jeg arbejdede i et supermarked så jeg på egen hånd hvor meget mad der bliver smidt ud på dalig basis. Det er et problem både for milijøet, og for fremtiden for Danmark."</p>
     </div>
 
     <div class="person">
-        <a href="https://www.instagram.com/gustavwilquin/"><img src="../img/Gustav.jpeg"></a>
+        <a href="https://www.instagram.com/gustavwilquin/"><img src="../static/css/img/Gustav.jpeg"></a>
         <h4>Gustav Wilquin</h4>
         <h4>Founder/Owner</h4>
         <p>Jeg går specielt ind for det grundet det er en rigtig god måde at spare penge på og det kræver ikke den store indsats for at det kan spare på hvor meget som bliver smidt ud på årlig basis</p>
     </div>
 
     <div class="person">
-        <a href="https://www.instagram.com/sofusvingard/"><img src="../img/Sofus.jpeg" ></a>
+        <a href="https://www.instagram.com/sofusvingard/"><img src="../static/css/img/Sofus.jpeg" ></a>
         <h4>Sofus Emil Krebs Vingaard</h4>
         <h4>Founder/Owner</h4>
         <p>"I Danmark smider vi årligt flere tusind ton mad ud, men samtidigt er der børn i hele verden som kun får få måltider om ugen, vi bliver nød til at gøre det bedre."</p>
     </div>
 
     <div class="person">
-        <a href="https://www.instagram.com/thomas__dahl/"><img src="../img/Thomas.jpeg" ></a>
+        <a href="https://www.instagram.com/thomas__dahl/"><img src="../static/css/img/Thomas.jpeg" ></a>
         <h4>Thomas Dahl</h4>
         <h4>Founder/Owner</h4>
         <p>"jeg går personligt selv op i madspil fordi jeg så hvor meget mad jeg selv smed ud på mit arbejde og tænkte - det er for dårligt. Derfor tænkte jeg at indgå i arbejde for at stoppe madspil i danmark, senere hen på verdensplan."</p>

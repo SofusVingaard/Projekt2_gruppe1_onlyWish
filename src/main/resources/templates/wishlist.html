@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Wishlist</title>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" href="../static/css/createWishlist.css" th:href="@{/css/createWishlist.css}">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/static/style.css}">
+    <link rel="stylesheet" href="../static/headerAndFooter.css" th:href="@{/static/headerAndFooter.css}">
+    <link rel="stylesheet" href="../static/css/createWishlist.css" th:href="@{/static/createWishlist.css}">
 
 </head>
 <body>
 <header>
-    <img src="../img/clouds.gif" alt="Topbillede" class="header-image">
-    <img src="../img/logo.png" alt="Logo" class="logo">
+    <img th:src="@{/static/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/static/img/logo.png}" alt="Logo" class="logo">
     <nav>
         <a th:href="@{/}">Forside</a>
         <a th:href="@{/users/profileheader}">Min Profil</a>
