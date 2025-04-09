@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 
@@ -27,41 +26,39 @@ public class WishController {
     //WishService wishService;
 
     @GetMapping("/getcreatewish")
-    public String createWish(Model model) {
-        return "createWish";  // Your HTML page
+    public String createWish(@RequestParam(required = false) String wishlistId, Model model) {
+        if (wishlistId == null || wishlistId.isBlank()) {
+            return "redirect:/wishlist/my-wishlists";
+        }
+
+        try {
+            int id = Integer.parseInt(wishlistId);
+            model.addAttribute("wishlistId", id);
+            return "createWish";
+        } catch (NumberFormatException e) {
+            return "redirect:/wishlist/my-wishlists"; // eller vis en fejlside
+        }
     }
+
 
 
     @PostMapping("/saveCreateWish")
     public String postCreateWish(
-            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "name") String name,
             @RequestParam("wishlistId") int wishlistId,
-            @RequestParam(required = false) BigDecimal price,
+            @RequestParam(required = false ) BigDecimal price,
             @RequestParam(required = false) String description,
-            @RequestParam(required = false) String imageUrl,
-            @RequestParam(required = false) String productlink,
-            HttpSession session,
-            RedirectAttributes redirectAttributes) {
-
+            @RequestParam (required = false) String imageUrl,
+            @RequestParam (required = false) String productlink,
+            HttpSession session) {
+        System.out.println("Received name: " + name);
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/users/login";
+            return "redirect:/login";
         }
-
-        if (name == null || name.trim().isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Wish name is required");
-            return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
-        }
-
-        try {
-            Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
-            wishRepo.save(wish);
-            return "redirect:/wishlist/showWishlist?wishlistId=" + wishlistId;
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error creating wish: " + e.getMessage());
-            return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
-        }
-    }
+        Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
+        wishRepo.save(wish);
+        return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;    }
 
     @GetMapping("/getUpdateWish")
     public String updateWish(@RequestParam("id")int id){

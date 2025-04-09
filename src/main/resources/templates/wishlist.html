@@ -6,7 +6,6 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
     <link rel="stylesheet" th:href="@{/css/createWishlist.css}">
-
 </head>
 <body>
 <header>
@@ -20,44 +19,47 @@
         <a th:href="@{/users/createuser}">Opret bruger</a>
     </nav>
 </header>
-    <main>
-        <div class="wishlist-container">
-            <h2>Ønskeliste</h2>
 
-            <button class="create-wishlist-btn" onclick="toggleForm()">Opret Ønskeliste</button>
-            <div id="wishlistForm" class="wishlist-form">
-                <div class="form-header">
-                    <h3>Ny Ønskeliste</h3>
-                    <button class="close-btn" onclick="toggleForm()">×</button>
-                </div>
+<main>
+    <div class="wishlist-container">
+        <h2>Ønskeliste</h2>
 
-                <form th:action="@{/wishlist/create}" method="post" id="wishlist-form">
-                    <label for="name">Navn på ønskeliste:</label>
-                    <input type="text" id="name" name="name" required>
+        <button class="create-wishlist-btn" onclick="toggleForm()">Opret Ønskeliste</button>
 
-                    <label for="description">Beskrivelse:</label>
-                    <textarea id="description" name="description" rows="4"></textarea>
+        <div id="wishlistForm" class="wishlist-form">
+            <div class="form-header">
+                <h3>Ny Ønskeliste</h3>
+                <button class="close-btn" onclick="toggleForm()">×</button>
+            </div>
 
-                    <button type="submit">Gem Ønskeliste</button>
-                </form>
+            <form th:action="@{/wishlist/create}" method="post" id="wishlist-form">
+                <label for="name">Navn på ønskeliste:</label>
+                <input type="text" id="name" name="name" required>
 
+                <label for="description">Beskrivelse:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <button type="submit">Gem Ønskeliste</button>
+            </form>
+        </div>
+
+        <!-- Flyttet ud her: Vis alle ønskelister -->
+        <div th:if="${wishlists != null}">
+            <div class="showwishlist" th:each="wishlist : ${wishlists}">
                 <div>
-                    <div class="showwishlist" th:each="wishlist : ${wishlists}">
-                        <div>
-                            <label>Navn:</label>
-                            <span th:text="${wishlist.name}">ID</span>
-                        </div>
-                        <div>
-                            <label>Beskrivelse:</label>
-                            <span th:text="${wishlist.description}">ID</span>
-                        </div>
-                        <a th:href="@{/wishlist/createwish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
-                    </div>
+                    <label>Navn:</label>
+                    <span th:text="${wishlist.name}">Navn</span>
                 </div>
-
+                <div>
+                    <label>Beskrivelse:</label>
+                    <span th:text="${wishlist.description}">Beskrivelse</span>
+                </div>
+                <a th:href="@{/wish/getcreatewish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
             </div>
         </div>
-    </main>
+    </div>
+</main>
+
 <footer>
     <div class="footer-content">
         <div class="footer-section about">
@@ -82,7 +84,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p th:text="'&copy; ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+        <p th:text="'© ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
     </div>
 </footer>
 

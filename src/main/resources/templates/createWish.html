@@ -22,8 +22,7 @@
 
 <main>
   <form th:action="@{/wish/saveCreateWish}" method="post">
-    <input type="hidden" name="wishlistId" th:value="${wishlist.id}" />
-
+    <input type="hidden" name="wishlistId" th:value="${wishlistId}" />
     <label for="name">Navn:</label>
     <input type="text" id="name" name="name" placeholder="Indtast navn på ønske" required />
 
