@@ -42,10 +42,9 @@ WishlistRepository wishlistRepository;
         if (currentUser == null) {
             return "redirect:/login";
         }
-
         Wishlist wishlist = new Wishlist(currentUser.getId(), name, description);
         wishlistRepository.saveWishlist(wishlist);
-        return "wishlist";
+        return "redirect:/wishlist/my-wishlists";
     }
 
     @GetMapping("/my-wishlists")
