@@ -74,7 +74,7 @@ return "wishlist";
                                  @RequestParam("userid") int userId) {
     wishlistRepository.deleteWishlist(name, userId);
 
-    return "redirect:/";
+    return "redirect:/wishlist";
 }
 
     @GetMapping("/createwish")

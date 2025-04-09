@@ -52,7 +52,7 @@ public class WishController {
     public String updateWish(@RequestParam("id")int id){
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);
-        return "updateWish";
+        return "redirect:/wishlist";
     }
 
     @PostMapping("/saveUpdateWish")
@@ -64,7 +64,7 @@ public class WishController {
             @RequestParam("Description") String description){
 
         Wish wish = new Wish(id, name, wishlist, description, price);
-        return "redirect/";
+        return "redirect:/wishlist";
     }
 
     @GetMapping("/showWish")
