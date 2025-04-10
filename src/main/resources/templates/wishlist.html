@@ -43,7 +43,6 @@
             </form>
         </div>
 
-        <!-- Flyttet ud her: Vis alle ønskelister -->
         <div th:if="${wishlists != null}">
             <div class="showwishlist" th:each="wishlist : ${wishlists}">
                 <div>
@@ -55,6 +54,8 @@
                     <span th:text="${wishlist.description}">Beskrivelse</span>
                 </div>
                 <a th:href="@{/wish/getcreatewish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
+                <a th:href="@{/wish/wisheslist(wishlistId=${wishlist.id})}" class="btn">Se ønsker</a>
+
             </div>
         </div>
     </div>

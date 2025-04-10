@@ -150,7 +150,7 @@ public class WishRepository {
 
     }
     public ArrayList<Wish> findByWishlistId(int wishlistId) {
-        String sql = "SELECT * FROM wish WHERE wishlist_id = ?";
+        String sql = "SELECT * FROM wishes WHERE wishlist_id = ?";
         ArrayList<Wish> wishes = new ArrayList<>();
 
         try (Connection conn = dataSource.getConnection();
@@ -161,10 +161,11 @@ public class WishRepository {
             while (rs.next()) {
                 Wish wish = new Wish();
                 wish.setId(rs.getInt("id"));
-                wish.setName(rs.getString("title"));
+                wish.setName(rs.getString("name"));
                 wish.setDescription(rs.getString("description"));
                 wish.setPrice(rs.getBigDecimal("price"));
-
+                wish.setImageUrl(rs.getString("url"));
+                wish.setProductlink(rs.getString("product_link"));
                 wishes.add(wish);
             }
 

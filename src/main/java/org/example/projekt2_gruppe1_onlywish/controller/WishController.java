@@ -109,11 +109,11 @@ public class WishController {
         return "redirect:/wish/showWish?id=" + wishId;
     }
 
-    @GetMapping("/wishlist/wishes")
+    @GetMapping("wisheslist")
     public String getWishesByWishlist(@RequestParam("wishlistId") int wishlistId, Model model) {
         ArrayList<Wish> wishes = wishRepo.findByWishlistId(wishlistId);
         model.addAttribute("wishes", wishes);
-        return "wishlist/wishes";
+        return "wisheslist";
 
     }
 }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/createWish.css}">
+</head>
+<body>
+<header>
+  <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
+  <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+  <nav>
+    <a th:href="@{/}">Forside</a>
+    <a th:href="@{/users/profileheader}">Min Profil</a>
+    <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+    <a th:href="@{/users/login}">Login</a>
+    <a th:href="@{/users/createuser}">Opret bruger</a>
+  </nav>
+</header>
+
+<div th:if="${wishes != null}">
+  <div class="showwish" th:each="wish : ${wishes}">
+    <div>
+      <label>Navn:</label>
+      <span th:text="${wish.name}">Navn</span>
+    </div>
+    <div>
+      <label>Beskrivelse:</label>
+      <span th:text="${wish.description}">Beskrivelse</span>
+    </div>
+    <div>
+      <label>Pris:</label>
+      <span th:text="${wish.price}">0.00</span>
+    </div>
+    <div>
+      <label>Produktlink:</label>
+      <a th:href="${wish.productlink}" th:text="${wish.productlink}">Link</a>
+    </div>
+    <div>
+      <label>Billede:</label>
+      <img th:src="${wish.imageUrl}" alt="Billede" style="max-width: 200px;" />
+    </div>
+  </div>
+</div>
+
+
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h2>Om Os</h2>
+      <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h2>Nyttige Links</h2>
+      <ul>
+        <a th:href="@{/}">Forside</a>
+        <a th:href="@{/users/profileheader}">Min Profil</a>
+        <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h2>Kontakt Os</h2>
+      <p>Email: onlywish@kontakt.dk</p>
+      <p>Telefon: +45 12 34 56 78</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p th:text="'© ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+  </div>
+</footer>
+
+<script>
+  const formElement = document.getElementById('wishlistForm');
+
+  function toggleForm() {
+    formElement.classList.toggle('show');
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    alert("Ønskelisten er gemt!");
+
+    document.getElementById('wishlist-form').reset();
+
+    formElement.classList.remove('show');
+  }
+</script>
+</body>
+</html>
+
