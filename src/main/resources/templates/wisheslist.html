@@ -40,7 +40,8 @@
     </div>
     <div>
       <label>Billede:</label>
-      <img th:src="${wish.imageUrl}" alt="Billede" style="max-width: 200px;" />
+      <img th:if="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
+      <img th:unless="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
     </div>
   </div>
 </div>

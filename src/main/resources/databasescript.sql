@@ -24,12 +24,14 @@ CREATE TABLE wishes (
                         name VARCHAR(255) NOT NULL,
                         description TEXT,
                         price DECIMAL(10,2),
-                        url VARCHAR(500),
+                        url VARCHAR(50000),
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         product_link VARCHAR(255),
                         reserve BOOLEAN DEFAULT false,
                         FOREIGN KEY (wishlist_id) REFERENCES wishlists(id) ON DELETE CASCADE
 );
+ALTER TABLE wishes
+    MODIFY url LONGTEXT;
 
 CREATE TABLE reservations (
                               id INT AUTO_INCREMENT PRIMARY KEY,
