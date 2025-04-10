@@ -19,9 +19,12 @@
     <a th:href="@{/users/createuser}">Opret bruger</a>
   </nav>
 </header>
+<main>
+  <div id="wishlistForm" class="wishlist-container">
+    <h2>Dine Ønsker</h2>
 
 <div th:if="${wishes != null}">
-  <div class="showwish" th:each="wish : ${wishes}">
+  <div  class="showwishlist" th:each="wish : ${wishes}">
     <div>
       <label>Navn:</label>
       <span th:text="${wish.name}">Navn</span>
@@ -44,6 +47,8 @@
     </div>
   </div>
 </div>
+  </div>
+</main>
 
 
 
