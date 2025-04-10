@@ -9,18 +9,19 @@
 </head>
 <body>
 <header>
-    <img th:src="@{/css/img/clouds.gif}" alt="Topbillede" class="header-image">
-    <img th:src="@{/css/img/logo.png}" alt="Logo" class="logo">
+    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
     <nav>
-        <a th:href="@{/}">Forside</a>
-        <a th:href="@{/users/profileheader}">Min Profil</a>
+        <a href="index.html">Forside</a>
+        <a href="profile.html">Min Profil</a>
         <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+       <!-- <a href="login.html">Login</a>-->
     </nav>
 </header>
 <main>
     <section class = "profile-container">
         <div class = "person">
-                <img th:src="@{/static/img/Profile_pic.jpeg}" alt="Profilbillede">
+                <img th:src="@{/img/Profile_pic.jpeg}" alt="Profilbillede">
                 <link rel = ".teamet.css">
             </div>
             <div class = "profile-info">
@@ -53,9 +54,8 @@
         <div class="footer-section links">
             <h2>Nyttige Links</h2>
             <ul>
-                <a th:href="@{/}">Forside</a>
-                <a th:href="@{/users/profileheader}">Min Profil</a>
-                <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>               ">Ønskeliste</a></li>
+                <li><a th:href="@{index.html}">Forside</a></li>
+                <li><a th:href="@{profile.html}">Min Profil</a></li>                 ">Ønskeliste</a></li>
             </ul>
         </div>
 
