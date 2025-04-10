@@ -5,6 +5,7 @@ body {
     padding: 0;
 }
 
+
 main {
     max-width: 600px;
     margin: 50px auto;
@@ -60,4 +61,43 @@ button:hover {
     main {
         margin: 20px;
     }
+
     button {
+    }
+}
+
+    .wishlist-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .showwishlist {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .showwishlist label {
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
