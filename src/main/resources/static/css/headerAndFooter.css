@@ -53,64 +53,46 @@ nav a:hover {
         width: 100%;
         text-align: center;
     }
-html, body {
-    height: 100%;
+
+
+
+
+
+main {
+    min-height: calc(100vh - 150px);
+    padding-bottom: 20px;
 }
 
+
 footer {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px 0;
+    font-size: 0.9em;
+    margin-top: auto;
 }
 
 .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    max-width: 1100px;
-    margin: auto;
-    padding: 10px;
 }
 
 .footer-section {
     flex: 1;
-    margin: 10px;
-    min-width: 250px;
+    min-width: 200px;
+    padding: 10px;
 }
 
 .footer-section h2 {
-    border-bottom: 2px solid #777;
-    display: inline-block;
-    padding-bottom: 5px;
+    font-size: 1.1rem;
     margin-bottom: 10px;
 }
 
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section ul li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-section ul li a:hover {
-    color: #ddd;
-}
-
 .footer-bottom {
-    background-color: #222;
-    padding: 10px 0;
-    margin-top: 10px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 0.8em;
 }
-

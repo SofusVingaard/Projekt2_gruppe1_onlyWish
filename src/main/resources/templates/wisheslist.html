@@ -47,7 +47,7 @@
 
 
 
-<footer>
+<footer xmlns:th="http://www.thymeleaf.org">
   <div class="footer-content">
     <div class="footer-section about">
       <h2>Om Os</h2>
@@ -57,21 +57,21 @@
     <div class="footer-section links">
       <h2>Nyttige Links</h2>
       <ul>
-        <a th:href="@{/}">Forside</a>
-        <a th:href="@{/users/profileheader}">Min Profil</a>
-        <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+        <li><a th:href="@{/}">Forside</a></li>
+        <li><a th:href="@{/users/profileheader}">Min Profil</a></li>
+        <li><a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a></li>
       </ul>
     </div>
 
     <div class="footer-section contact">
       <h2>Kontakt Os</h2>
-      <p>Email: onlywish@kontakt.dk</p>
-      <p>Telefon: +45 12 34 56 78</p>
+      <p>Email: <span th:text="${contactEmail ?: 'onlywish@kontakt.dk'}">onlywish@kontakt.dk</span></p>
+      <p>Telefon: <span th:text="${contactPhone ?: '+45 12 34 56 78'}">+45 12 34 56 78</span></p>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p th:text="'© ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">© 2025 onlywish | Alle rettigheder forbeholdes</p>
+    <p>© <span th:text="${#temporals.year(#temporals.createNow())}">2025</span> Onlywish | Alle rettigheder forbeholdes</p>
   </div>
 </footer>
 
