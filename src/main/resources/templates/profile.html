@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
+    <img th:src="@{/img/clouds-sky.jpg}" alt="Topbillede" class="header-image">
     <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
     <nav>
         <a href="index.html">Forside</a>
@@ -38,7 +38,6 @@
                         <label>Email:</label>
                         <p><span th:text="${user.email}"></span></p>
                     </div>
-                    <a th:href="@{/edit-profile}" class="edit">Rediger Profil</a>
                 </div>
                 </div>
     </section>
@@ -67,7 +66,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p th:text="'© ' + ${year} + ' onlywish | Alle rettigheder forbeholdes'">
+        <p th:text="'© ' + ${year} + ' Onlywish | Alle rettigheder forbeholdes'">
     </div>
 </footer>
 </body>
