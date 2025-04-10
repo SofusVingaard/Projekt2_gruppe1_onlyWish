@@ -43,8 +43,8 @@
     </div>
     <div>
       <label>Billede:</label>
-      <img th:if="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
-      <img th:unless="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
+      <img th:if="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
+      <img th:unless="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
     </div>
   </div>
 </div>
