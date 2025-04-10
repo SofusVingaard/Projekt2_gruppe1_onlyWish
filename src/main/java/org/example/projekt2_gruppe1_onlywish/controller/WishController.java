@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/wish")
@@ -41,15 +42,14 @@ public class WishController {
     }
 
 
-
     @PostMapping("/saveCreateWish")
     public String postCreateWish(
             @RequestParam(value = "name") String name,
             @RequestParam("wishlistId") int wishlistId,
-            @RequestParam(required = false ) BigDecimal price,
+            @RequestParam(required = false) BigDecimal price,
             @RequestParam(required = false) String description,
-            @RequestParam (required = false) String imageUrl,
-            @RequestParam (required = false) String productlink,
+            @RequestParam(required = false) String imageUrl,
+            @RequestParam(required = false) String productlink,
             HttpSession session) {
         System.out.println("Received name: " + name);
         User currentUser = (User) session.getAttribute("currentUser");
@@ -58,10 +58,11 @@ public class WishController {
         }
         Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
         wishRepo.save(wish);
-        return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;    }
+        return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
+    }
 
     @GetMapping("/getUpdateWish")
-    public String updateWish(@RequestParam("id")int id){
+    public String updateWish(@RequestParam("id") int id) {
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);
         return "redirect:/wishlist";
@@ -73,14 +74,14 @@ public class WishController {
             @RequestParam("Name") String name,
             @RequestParam("Wishlist") int wishlist,
             @RequestParam("Price") BigDecimal price,
-            @RequestParam("Description") String description){
+            @RequestParam("Description") String description) {
 
         Wish wish = new Wish(id, name, wishlist, description, price);
         return "redirect:/wishlist";
     }
 
     @GetMapping("/showWish")
-    public String showWIsh(@RequestParam("ID")int id, String name){
+    public String showWIsh(@RequestParam("ID") int id, String name) {
 
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);
@@ -89,7 +90,7 @@ public class WishController {
     }
 
     @PostMapping("/deleteWish")
-    public String deleteWish(@RequestParam("id")int id){
+    public String deleteWish(@RequestParam("id") int id) {
 
         wishRepo.delete(id);
 
@@ -101,10 +102,18 @@ public class WishController {
         wishRepo.reserveWish(wishId);
         return "redirect:/wishlist";
     }
+
     @PostMapping("/unReserveWish")
     public String toggleReservation(@RequestParam("wishId") int wishId) {
         wishRepo.unreserveWish(wishId);
         return "redirect:/wish/showWish?id=" + wishId;
     }
 
+    @GetMapping("/wishlist/wishes")
+    public String getWishesByWishlist(@RequestParam("wishlistId") int wishlistId, Model model) {
+        ArrayList<Wish> wishes = wishRepo.findByWishlistId(wishlistId);
+        model.addAttribute("wishes", wishes);
+        return "wishlist/wishes";
+
+    }
 }

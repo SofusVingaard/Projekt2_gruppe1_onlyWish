@@ -149,4 +149,28 @@ public class WishRepository {
         }
 
     }
+    public ArrayList<Wish> findByWishlistId(int wishlistId) {
+        String sql = "SELECT * FROM wish WHERE wishlist_id = ?";
+        ArrayList<Wish> wishes = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, wishlistId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Wish wish = new Wish();
+                wish.setId(rs.getInt("id"));
+                wish.setName(rs.getString("title"));
+                wish.setDescription(rs.getString("description"));
+                wish.setPrice(rs.getBigDecimal("price"));
+
+                wishes.add(wish);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishes;
+    }
 }
