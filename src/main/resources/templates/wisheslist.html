@@ -43,8 +43,8 @@
     </div>
     <div>
       <label>Billede:</label>
-      <img th:if="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
-      <img th:unless="${#strings.contains(wish.imageUrl, 'data:image/')}" th:src="${wish.imageUrl}" />
+      <img th:if="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
+      <img th:unless="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
     </div>
   </div>
 </div>
@@ -72,7 +72,7 @@
     <div class="footer-section contact">
       <h2>Kontakt Os</h2>
       <p>Email: <span th:text="${contactEmail ?: 'onlywish@kontakt.dk'}">onlywish@kontakt.dk</span></p>
-      <p>Telefon: <span th:text="${contactPhone ?: '+45 12 34 56 78'}">+45 12 34 56 78</span></p>
+      <p>Telefon: <span th:text="${contactPhone ?: '+45 25 78 59 00'}">+45 25 78 59 00</span></p>
     </div>
   </div>
 
