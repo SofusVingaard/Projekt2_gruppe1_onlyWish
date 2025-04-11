@@ -33,13 +33,21 @@ public class Usercontroller {
 
     @PostMapping("/createuser")
     public String createUser
-            (@RequestParam("name")String name,
+            (HttpSession session,
+             @RequestParam("name")String name,
              @RequestParam ("age") int age,
              @RequestParam ("email") String email,
              @RequestParam ("password") String password) {
         User user = new User(name,age,email,password);
         userRepository.createUser(user);
+
+        User createdUser = userRepository.findByEmail(email);
+
+        if (createdUser != null) {
+            session.setAttribute("currentUser", createdUser);
+        }
         return "redirect:/users/profile";
+
     }
     @GetMapping("/getByEmail")
     public User getUserByEmail(@RequestParam String email) {
