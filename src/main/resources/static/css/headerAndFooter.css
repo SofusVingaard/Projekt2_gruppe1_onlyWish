@@ -45,7 +45,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: rgba(85, 85, 85, 0.99);
+    background-color: #c2e8fa;
     border-radius: 0px;
 }
 
