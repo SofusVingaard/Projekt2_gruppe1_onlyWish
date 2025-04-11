@@ -36,11 +36,14 @@ public class WishRepository {
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM wish WHERE id = ?";
+        String sql = "DELETE FROM wishes WHERE id = ?";
+
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setInt(1, id);
             statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
