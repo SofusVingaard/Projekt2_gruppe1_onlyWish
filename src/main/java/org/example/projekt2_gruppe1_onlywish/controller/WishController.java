@@ -97,18 +97,6 @@ public class WishController {
         return "redirect:/wishlist/showWishlist?wishlistId=" + id;
     }
 
-    @PostMapping("/reserveWish")
-    public String reserveWish(@RequestParam("wishId") int wishId) {
-        wishRepo.reserveWish(wishId);
-        return "redirect:/wishlist";
-    }
-
-    @PostMapping("/unReserveWish")
-    public String toggleReservation(@RequestParam("wishId") int wishId) {
-        wishRepo.unreserveWish(wishId);
-        return "redirect:/wish/showWish?id=" + wishId;
-    }
-
     @GetMapping("wisheslist")
     public String getWishesByWishlist(@RequestParam("wishlistId") int wishlistId, Model model) {
         ArrayList<Wish> wishes = wishRepo.findByWishlistId(wishlistId);

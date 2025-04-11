@@ -61,7 +61,6 @@ public class Wish {
         this.description = description;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -74,7 +73,6 @@ public class Wish {
         return name;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -83,18 +81,10 @@ public class Wish {
         return price;
     }
 
-    public String getUrl() {
-        return imageUrl;
-    }
-
     public void addAttribute(Wish wish) {
     }
 
     public int getWishlistId() {
         return wishlistId;
-    }
-
-    public void setWishlistId(int wishlistId) {
-        this.wishlistId = wishlistId;
     }
 }

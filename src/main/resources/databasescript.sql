@@ -32,21 +32,3 @@ CREATE TABLE wishes (
 );
 ALTER TABLE wishes
     MODIFY url LONGTEXT;
-
-CREATE TABLE reservations (
-                              id INT AUTO_INCREMENT PRIMARY KEY,
-                              wish_id INT NOT NULL,
-                              reserver_user_id INT NOT NULL,
-                              reserved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                              FOREIGN KEY (wish_id) REFERENCES wishes(id) ON DELETE CASCADE,
-                              FOREIGN KEY (reserver_user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
-CREATE TABLE contribution (
-                              id INT AUTO_INCREMENT PRIMARY KEY,
-                              wish_id INT NOT NULL,
-                              user_id INT NOT NULL,
-                              amount DECIMAL(10, 2) NOT NULL,
-                              FOREIGN KEY (wish_id) REFERENCES wishes(id),
-                              FOREIGN KEY (user_id) REFERENCES users(id)
-);

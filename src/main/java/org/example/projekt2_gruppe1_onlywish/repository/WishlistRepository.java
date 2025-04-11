@@ -17,8 +17,6 @@ import java.util.List;
 
 @Repository
 public class WishlistRepository {
-    /*@Autowired
-    InitData initData;*/
     @Autowired
     private DataSource dataSource;
 
@@ -96,15 +94,13 @@ public class WishlistRepository {
                     wishlist.setUserId(resultSet.getInt("user_id"));
                     wishlist.setName(resultSet.getString("name"));
                     wishlist.setDescription(resultSet.getString("description"));
-                    // Add any other wishlist fields from your database
 
                     wishlists.add(wishlist);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // In production, consider throwing a custom exception
-            // throw new DataAccessException("Error finding wishlists by user ID", e);
+
         }
 
         return wishlists;
