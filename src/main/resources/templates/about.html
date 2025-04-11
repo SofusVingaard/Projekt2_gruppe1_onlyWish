@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel ="stylesheet" th:href="@{/css/style.css}">
-    <link rel ="stylesheet" th:href="@{/css/headerAndFooter}">
+    <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
     <link rel="stylesheet" th:href="@{/css/teamet.css}">
 </head>
 <body>
 <header>
     <img th:src="@{/img/clouds-sky.jpg}" alt="Topbillede" class="header-image">
-    <img th:src="@{/img/logo.pmg}" alt="Logo" class="logo">
+    <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
 
     <nav>
         <a th:href="@{/}">Forside</a>
@@ -28,60 +28,61 @@
     </div>
     <div class="Profiler">
         <div class="person">
-            <a href="https://www.instagram.com/chri66j9/"><img src="../static/img/Christoffer.jpeg"></a>
+            <a href="https://www.instagram.com/chri66j9/"><img src="/img/christoffer.jpeg"></a>
             <h4>Christoffer Holm Nielsen</h4>
             <h4>Founder/Owner</h4>
             <p>"Jeg brænder for at skabe smarte digitale løsninger – og idéen om en ønskeliste-platform kom, da jeg selv manglede et sted at samle mine egne ønsker. Nu gør vi det nemt for alle!"</p>
         </div>
 
         <div class="person">
-            <a href="https://www.instagram.com/gustavwilquin/"><img src="../static/img/Gustav.jpeg"></a>
+            <a href="https://www.instagram.com/gustavwilquin/"><img src="/img/gustav.jpeg"></a>
             <h4>Gustav Wilquin</h4>
             <h4>Founder/Owner</h4>
             <p>"Vi er en ny generation med store idéer – og vi tror på, at teknologi skal gøre livet lettere. Vores platform gør ønskegivning smartere, sjovere og mere personligt."</p>
         </div>
 
         <div class="person">
-            <a href="https://www.instagram.com/sofusvingard/"><img src="../static/img/Sofus.jpeg" ></a>
+            <a href="https://www.instagram.com/sofusvingard/"><img src="/img/sofus.jpeg" ></a>
             <h4>Sofus Emil Krebs Vingaard</h4>
             <h4>Founder/Owner</h4>
             <p>"Som studerende kender vi alt til ønskelister og gaveideer – derfor skabte vi en platform, som hjælper både dig og dine nærmeste med at holde styr på det hele. Enkelt og effektivt."</p>
         </div>
 
         <div class="person">
-            <a href="https://www.instagram.com/thomas__dahl/"><img src="../static/img/Thomas.jpeg" ></a>
+            <a href="https://www.instagram.com/thomas__dahl/"><img src="/img/thomas.jpeg" ></a>
             <h4>Thomas Dahl</h4>
             <h4>Founder/Owner</h4>
             <p>"Vi er unge med en mission: at gøre ønskelister digitale, nemme og tilgængelige for alle. Det her er kun begyndelsen – vi bygger fremtidens ønskeløsninger!"</p>
         </div>
     </div>
 </main>
-<footer>
+<footer xmlns:th="http://www.thymeleaf.org">
     <div class="footer-content">
         <div class="footer-section about">
             <h2>Om Os</h2>
             <p>Vi er en virksomhed, der brænder for at levere de bedste produkter og tjenester.</p>
-
         </div>
+
         <div class="footer-section links">
             <h2>Nyttige Links</h2>
             <ul>
-                <a th:href="@{/}">Forside</a>
-                <a th:href="@{/users/profileheader}">Min Profil</a>
-                <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
+                <li><a th:href="@{/}">Forside</a></li>
+                <li><a th:href="@{/users/profileheader}">Min Profil</a></li>
+                <li><a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a></li>
             </ul>
         </div>
 
         <div class="footer-section contact">
             <h2>Kontakt Os</h2>
-            <p>Email: onlywish@kontakt.dk</p>
-            <p>Telefon: +45 12 34 56 78</p>
+            <p>Email: <span th:text="${contactEmail ?: 'onlywish@kontakt.dk'}">onlywish@kontakt.dk</span></p>
+            <p>Telefon: <span th:text="${contactPhone ?: '+45 25 78 59 00'}">+45 25 78 59 00</span></p>
         </div>
     </div>
 
-</footer>
-</body>
-</html>
+    <div class="footer-bottom">
+        <p>© <span th:text="${#temporals.year(#temporals.createNow())}">2025</span> Onlywish | Alle rettigheder forbeholdes</p>
+    </div>
 
+</footer>
 </body>
 </html>
