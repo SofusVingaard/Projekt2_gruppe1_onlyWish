@@ -1,0 +1,96 @@
+/* Generelle stilarter */
+.main-content {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Profile container */
+.profile-container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Person/billede sektion */
+.person {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.person img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    flex: 2;
+}
+
+.tekstboks {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tekstboks div {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.tekstboks label {
+    font-weight: 600;
+    color: #495057;
+    width: 80px;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.tekstboks p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #212529;
+}
+
+/* Responsivt design */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .person img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .tekstboks div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tekstboks label {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+}
+.person img {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.person img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

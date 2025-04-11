@@ -3,7 +3,6 @@ package org.example.projekt2_gruppe1_onlywish.controller;
 import jakarta.servlet.http.HttpSession;
 import org.example.projekt2_gruppe1_onlywish.model.User;
 import org.example.projekt2_gruppe1_onlywish.model.Wish;
-import org.example.projekt2_gruppe1_onlywish.model.Wishlist;
 import org.example.projekt2_gruppe1_onlywish.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,7 +100,7 @@ public class WishController {
     public String getWishesByWishlist(@RequestParam("wishlistId") int wishlistId, Model model) {
         ArrayList<Wish> wishes = wishRepo.findByWishlistId(wishlistId);
         model.addAttribute("wishes", wishes);
-        return "wisheslist";
+        return "seeWishesInList";
 
     }
 }

@@ -5,7 +5,7 @@
     <title>Profile</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
-    <link rel="stylesheet" th:href="@{/css/MinProfil.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 <header>
@@ -19,27 +19,26 @@
     </nav>
 </header>
 <main class="main-content">
-    <section class = "profile-container">
-        <div class = "person">
-                <img th:src="@{/img/profile_pic.jpeg}" alt="Profilbillede">
-                <link rel = ".teamet.css">
+    <section class="profile-container">
+        <div class="person">
+            <img th:src="@{/img/profile_pic.jpeg}" alt="Profilbillede" class="profile-image">
+        </div>
+        <div class="profile-info">
+            <div class="tekstboks">
+                <div class="info-item">
+                    <label class="info-label">Navn:</label>
+                    <p class="info-value"><span th:text="${user.name}"></span></p>
+                </div>
+                <div class="info-item">
+                    <label class="info-label">Alder:</label>
+                    <p class="info-value"><span th:text="${user.age}"></span></p>
+                </div>
+                <div class="info-item">
+                    <label class="info-label">Email:</label>
+                    <p class="info-value"><span th:text="${user.email}"></span></p>
+                </div>
             </div>
-            <div class = "profile-info">
-                <div class = tekstboks>
-                    <div>
-                        <label>Navn:</label>
-                        <p> <span th:text="${user.name}"></span></p>
-                    </div>
-                    <div>
-                        <label>Alder:</label>
-                        <p><span th:text="${user.age}"></span></p>
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <p><span th:text="${user.email}"></span></p>
-                    </div>
-                </div>
-                </div>
+        </div>
     </section>
 </main>
 <footer xmlns:th="http://www.thymeleaf.org">

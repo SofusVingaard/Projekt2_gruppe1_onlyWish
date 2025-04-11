@@ -20,18 +20,9 @@
     </nav>
 </header>
 
+
 <main class="main-content">
-    <div class="wishlist-container">
-        <h2>Ønskeliste</h2>
-
-        <button class="create-wishlist-btn" onclick="toggleForm()">Opret Ønskeliste</button>
-
-        <div id="wishlistForm" class="wishlist-form">
-            <div class="form-header">
-                <h3>Ny Ønskeliste</h3>
-                <button class="close-btn" onclick="toggleForm()">×</button>
-            </div>
-
+    <h2>Opret ønskeliste</h2>
             <form th:action="@{/wishlist/create}" method="post" id="wishlist-form">
                 <label for="name">Navn på ønskeliste:</label>
                 <input type="text" id="name" name="name" required>

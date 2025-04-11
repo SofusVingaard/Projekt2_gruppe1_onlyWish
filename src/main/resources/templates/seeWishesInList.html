@@ -5,12 +5,12 @@
   <title>Wishlist</title>
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
-  <link rel="stylesheet" th:href="@{/css/createWish.css}">
+  <link rel="stylesheet" th:href="@{/css/seeWishesInList.css}">
 </head>
 <body>
 <header>
-  <img th:src="@{/img/clouds.gif}" alt="Topbillede" class="header-image">
-  <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+  <img th:src="@{/img/clouds-sky.jpg}" alt="Topbillede" class="header-image">
+  <img th:src="@{/img/logo.pmg}" alt="Logo" class="logo">
   <nav>
     <a th:href="@{/}">Forside</a>
     <a th:href="@{/users/profileheader}">Min Profil</a>
@@ -22,6 +22,7 @@
 <main>
   <div id="wishlistForm" class="wishlist-container">
     <h2>Dine Ønsker</h2>
+
 
 <div th:if="${wishes != null}">
   <div  class="showwishlist" th:each="wish : ${wishes}">
@@ -80,24 +81,6 @@
     <p>© <span th:text="${#temporals.year(#temporals.createNow())}">2025</span> Onlywish | Alle rettigheder forbeholdes</p>
   </div>
 </footer>
-
-<script>
-  const formElement = document.getElementById('wishlistForm');
-
-  function toggleForm() {
-    formElement.classList.toggle('show');
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    alert("Ønskelisten er gemt!");
-
-    document.getElementById('wishlist-form').reset();
-
-    formElement.classList.remove('show');
-  }
-</script>
 </body>
 </html>
 
