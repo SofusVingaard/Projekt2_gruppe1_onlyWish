@@ -87,4 +87,8 @@ public class Wish {
     public int getWishlistId() {
         return wishlistId;
     }
+
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
+    }
 }

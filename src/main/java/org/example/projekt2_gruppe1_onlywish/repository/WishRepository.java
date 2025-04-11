@@ -65,6 +65,7 @@ public class WishRepository {
             while (rs.next()) {
                 Wish wish = new Wish();
                 wish.setId(rs.getInt("id"));
+                wish.setWishlistId(rs.getInt("wishlist_id"));
                 wish.setName(rs.getString("name"));
                 wish.setDescription(rs.getString("description"));
                 wish.setPrice(rs.getBigDecimal("price"));

@@ -89,15 +89,19 @@ public class WishController {
     }
 
     @PostMapping("/deleteWish")
-    public String deleteWish(@RequestParam("id") int id, HttpSession session) {
+    public String deleteWish(@RequestParam("id") int id,
+                             @RequestParam("wishlistId") int wishlistId,
+                             HttpSession session,
+                             Model model) {
 
-        Object currentUserId =  session.getAttribute("currentUser");
+        Object currentUserId = session.getAttribute("currentUser");
         if (currentUserId != null) {
             wishRepo.delete(id);
         }
 
-        return "seeWishesInList";
+        return "redirect:/wish/wisheslist?wishlistId=" + wishlistId;
     }
+
 
     @GetMapping("wisheslist")
     public String getWishesByWishlist(@RequestParam("wishlistId") int wishlistId, Model model) {

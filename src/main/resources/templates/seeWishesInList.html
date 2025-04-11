@@ -48,10 +48,13 @@
       <img th:if="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
       <img th:unless="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
     </div>
-    <form th:action="@{/wish/deleteWish}" method="post" th:object="${wishes}">
+    <form th:action="@{/wish/deleteWish}" method="post">
       <input type="hidden" name="id" th:value="${wish.id}" />
-      <button type="submit">Slet ønske</button>
+      <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}" />
+      <button type="submit">Slet</button>
     </form>
+
+
   </div>
 </div>
   </div>
