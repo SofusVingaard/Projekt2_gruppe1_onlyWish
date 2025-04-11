@@ -64,14 +64,13 @@ public class WishlistRepository {
 
     }
 
-    public void deleteWishlist( String name, int userId) {
-        String sql= "DELETE FROM wishlist WHERE name = ? AND user_id = ?";
+    public void deleteWishlist( int id) {
+        String sql= "DELETE FROM wishlists WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setString(1, name);
-            statement.setInt(2, userId);
+            statement.setInt(1, id);
             statement.executeUpdate();
 
         }catch (SQLException e){

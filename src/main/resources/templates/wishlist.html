@@ -46,6 +46,10 @@
                 </div>
                 <a th:href="@{/wish/getcreatewish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
                 <a th:href="@{/wish/wisheslist(wishlistId=${wishlist.id})}" class="btn">Se ønsker</a>
+                <form th:action="@{/wishlist/deleteWishlist}" method="post" th:object="${wishlist}">
+                    <input type="hidden" name="id" th:value="${wishlist.id}" />
+                    <button type="submit">Slet ønskeliste</button>
+                </form>
 
             </div>
         </div>

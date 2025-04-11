@@ -8,10 +8,7 @@ import org.example.projekt2_gruppe1_onlywish.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +16,8 @@ import java.util.List;
 @RequestMapping("/wishlist")
 public class WishlistController {
 
-@Autowired
-WishlistRepository wishlistRepository;
+    @Autowired
+    WishlistRepository wishlistRepository;
 
 
 
@@ -68,13 +65,15 @@ return "wishlist";
 
 }
 
-@PostMapping("/deleteWishlist")
-    public String deleteWishlist(@RequestParam("name") String name,
-                                 @RequestParam("userid") int userId) {
-    wishlistRepository.deleteWishlist(name, userId);
+    @PostMapping("/deleteWishlist")
+    public String deleteWishlist(@RequestParam("id") int id, HttpSession session) {
+        Object currentUserId =  session.getAttribute("currentUser");
+        if (currentUserId != null) {
+            wishlistRepository.deleteWishlist(id);
+        }
 
-    return "redirect:/wishlist";
-}
+    return "redirect:/wishlist/my-wishlists";
+    }
 
     @GetMapping("/createwish")
     public String showCreateWishForm(@RequestParam("wishlistId") int wishlistId, Model model) {
