@@ -1,7 +1,7 @@
 Gruppe medlemmer: 
 
-navn - github navn.
-
+**navn - github navn.
+**
 Sofus Vingård - SofusVingaard
 
 Gustav Wilquin - GusGiking
