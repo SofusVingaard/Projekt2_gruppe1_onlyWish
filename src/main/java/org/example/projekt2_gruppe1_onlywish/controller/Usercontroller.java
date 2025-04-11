@@ -37,7 +37,15 @@ public class Usercontroller {
              @RequestParam("name")String name,
              @RequestParam ("age") int age,
              @RequestParam ("email") String email,
-             @RequestParam ("password") String password) {
+             @RequestParam ("password") String password,
+             RedirectAttributes redirectAttributes) {
+
+        User existingUser = userRepository.findByEmail(email);
+        if (existingUser != null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "E-mailen er allerede i brug.");
+            return "redirect:/users/createuser";
+        }
+
         User user = new User(name,age,email,password);
         userRepository.createUser(user);
 
@@ -47,8 +55,8 @@ public class Usercontroller {
             session.setAttribute("currentUser", createdUser);
         }
         return "redirect:/users/profile";
-
     }
+
     @GetMapping("/getByEmail")
     public User getUserByEmail(@RequestParam String email) {
         return userRepository.getUserbyemail(email);
@@ -91,19 +99,21 @@ public class Usercontroller {
     public String login(
             @RequestParam String email,
             @RequestParam String password,
-            HttpSession session) {
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
 
-        // Get the FULL user from database
         User user = userRepository.findByEmail(email); // You'll need to implement this
 
         if (user != null && user.getPassword().equals(password)) {
-            // Store the complete user object in session
             session.setAttribute("currentUser", user);
             return "redirect:/users/profile";
         } else {
-            return "redirect:/users/login?error";
+            redirectAttributes.addFlashAttribute("errorMessage", "Email eller kode er forkert/bruger eksistere ikke! >:(");
+            return "redirect:/users/login";
         }
-    }
+
+        }
+
 
 
 
@@ -117,10 +127,10 @@ public class Usercontroller {
     public String profile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         if (user == null) {
-            return "redirect:/users/login";  // Redirect to login if no user is found
+            return "redirect:/users/login";
         }
         model.addAttribute("user", user);
-        return "profile";  // Render the profile page
+        return "profile";
     }
 
 
