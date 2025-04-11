@@ -1,6 +1,5 @@
 package org.example.projekt2_gruppe1_onlywish.repository;
 
-import jakarta.servlet.http.HttpSession;
 import org.example.projekt2_gruppe1_onlywish.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -104,54 +103,6 @@ public class UserRepository {
         }
     }
 
-    public void saveCreateUser(User user) {
-        String sql = "INSERT INTO users (name, age, email, password) VALUES (?, ?, ?, ?)";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
-            statement.setString(1, user.getName());
-            statement.setInt(2, user.getAge());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getPassword());
-
-            statement.executeUpdate();
-
-                /*ResultSet keys = statement.getGeneratedKeys();
-                if (keys.next()) {
-                    int generatedId = keys.getInt(1);
-                    user.setId(generatedId);
-                }
-*/
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public User getUserById(int id) {
-        String sql = "SELECT id, name, age, email FROM users WHERE id = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                return new User(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getInt("age"),
-                        resultSet.getString("email"),
-                        resultSet.getString("password")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public boolean login(User user) {
         String sql = "SELECT 1 FROM users WHERE email = ? AND password = ?";
 
@@ -167,7 +118,7 @@ public class UserRepository {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Return false if any error occurs
+            return false;
         }
     }
     public void updateUser(User user) {
