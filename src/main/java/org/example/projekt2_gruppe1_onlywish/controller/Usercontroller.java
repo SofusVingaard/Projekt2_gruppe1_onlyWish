@@ -99,7 +99,8 @@ public class Usercontroller {
     public String login(
             @RequestParam String email,
             @RequestParam String password,
-            HttpSession session) {
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
 
         User user = userRepository.findByEmail(email); // You'll need to implement this
 
@@ -107,9 +108,12 @@ public class Usercontroller {
             session.setAttribute("currentUser", user);
             return "redirect:/users/profile";
         } else {
-            return "redirect:/users/login?error";
+            redirectAttributes.addFlashAttribute("errorMessage", "Email eller kode er forkert/bruger eksistere ikke! >:(");
+            return "redirect:/users/login";
         }
-    }
+
+        }
+
 
 
 
