@@ -17,7 +17,7 @@ public class Usercontroller {
 
     @GetMapping("/index")
     public String index(HttpSession session, Model model) {
-        return "redirect:/users/createuser";  // Corrected path
+        return "redirect:/users/createuser";
     }
 
 
@@ -78,23 +78,6 @@ public class Usercontroller {
         return "login";
     }
 
-    /*@PostMapping("/login")
-    public String login(
-            @RequestParam String email,
-            @RequestParam String password,
-            HttpSession session) {
-
-        User user = new User(email,password);
-        boolean succesfulLogin = userRepository.login(user);
-
-
-        if (succesfulLogin) {
-            session.setAttribute("currentUser", user);
-            return "redirect:profile";
-        } else {
-            return "redirect:login";
-        }
-    }*/
     @PostMapping("/login")
     public String login(
             @RequestParam String email,
@@ -102,7 +85,7 @@ public class Usercontroller {
             HttpSession session,
             RedirectAttributes redirectAttributes) {
 
-        User user = userRepository.findByEmail(email); // You'll need to implement this
+        User user = userRepository.findByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("currentUser", user);

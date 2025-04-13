@@ -13,13 +13,9 @@ public class InitData {
 
     public InitData() {
 
-        // Populate the list with dummy data
         userList.add(new User(1, "Karla", 23, "CookedUser@gmail.com", "Testing123"));
         userList.add(new User(2, "Charlie", 33, "CharlieBrown@gmail.com", "Snoopy6969"));
 
 
-/*xpublic ArrayList<User> getUserList(){
-        return userList;
-    }*/
     }
 }

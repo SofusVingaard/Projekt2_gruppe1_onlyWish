@@ -35,13 +35,13 @@ public class WishlistController {
             @RequestParam(required = false) String description,
             HttpSession session) {
 
-        User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null) {
+            User currentUser = (User) session.getAttribute("currentUser");
+            if (currentUser == null) {
             return "redirect:/login";
-        }
-        Wishlist wishlist = new Wishlist(currentUser.getId(), name, description);
-        wishlistRepository.saveWishlist(wishlist);
-        return "redirect:/wishlist/my-wishlists";
+            }
+            Wishlist wishlist = new Wishlist(currentUser.getId(), name, description);
+            wishlistRepository.saveWishlist(wishlist);
+            return "redirect:/wishlist/my-wishlists";
     }
 
     @GetMapping("/my-wishlists")
@@ -61,7 +61,7 @@ public class WishlistController {
                                @RequestParam("userid") int userId, Model model) {
     Wishlist wishlist = wishlistRepository.getWishlistbyName(name, userId);
     model.addAttribute(wishlist);
-return "wishlist";
+    return "wishlist";
 
 }
 

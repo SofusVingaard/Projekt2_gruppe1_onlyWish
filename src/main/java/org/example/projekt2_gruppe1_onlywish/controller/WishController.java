@@ -22,8 +22,6 @@ public class WishController {
     @Autowired
     WishRepository wishRepo;
 
-    //@Autowired
-    //WishService wishService;
 
     @GetMapping("/getcreatewish")
     public String createWish(@RequestParam(required = false) String wishlistId, Model model) {
@@ -36,7 +34,7 @@ public class WishController {
             model.addAttribute("wishlistId", id);
             return "createWish";
         } catch (NumberFormatException e) {
-            return "redirect:/wishlist/my-wishlists"; // eller vis en fejlside
+            return "redirect:/wishlist/my-wishlists";
         }
     }
 
@@ -50,33 +48,33 @@ public class WishController {
             @RequestParam(required = false) String imageUrl,
             @RequestParam(required = false) String productlink,
             HttpSession session) {
-        System.out.println("Received name: " + name);
-        User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null) {
+            System.out.println("Received name: " + name);
+            User currentUser = (User) session.getAttribute("currentUser");
+            if (currentUser == null) {
             return "redirect:/login";
-        }
-        Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
-        wishRepo.save(wish);
-        return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
+            }
+            Wish wish = new Wish(name, price, wishlistId, description, imageUrl, productlink);
+            wishRepo.save(wish);
+            return "redirect:/wish/getcreatewish?wishlistId=" + wishlistId;
     }
 
     @GetMapping("/getUpdateWish")
-    public String updateWish(@RequestParam("id") int id) {
+        public String updateWish(@RequestParam("id") int id) {
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);
         return "redirect:/wishlist";
     }
 
     @PostMapping("/saveUpdateWish")
-    public String postSaveUpdate(
+        public String postSaveUpdate(
             @RequestParam("ID") int id,
             @RequestParam("Name") String name,
             @RequestParam("Wishlist") int wishlist,
             @RequestParam("Price") BigDecimal price,
             @RequestParam("Description") String description) {
 
-        Wish wish = new Wish(id, name, wishlist, description, price);
-        return "redirect:/wishlist";
+            Wish wish = new Wish(id, name, wishlist, description, price);
+            return "redirect:/wishlist";
     }
 
     @GetMapping("/showWish")
