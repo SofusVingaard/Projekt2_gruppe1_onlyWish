@@ -78,7 +78,7 @@ public class WishController {
     }
 
     @GetMapping("/showWish")
-    public String showWIsh(@RequestParam("ID") int id, String name) {
+    public String showWIsh(@RequestParam("ID") int id) {
 
         Wish wish = wishRepo.getAllWish(id);
         wish.addAttribute(wish);

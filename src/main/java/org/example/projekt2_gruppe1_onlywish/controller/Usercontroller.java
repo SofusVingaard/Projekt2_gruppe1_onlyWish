@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class Usercontroller {
 
     @GetMapping("/index")
-    public String index(HttpSession session, Model model) {
+    public String index() {
         return "redirect:/users/createuser";
     }
 
@@ -133,7 +133,6 @@ public class Usercontroller {
     }
     @PostMapping("/delete")
     public String deleteUser(@RequestParam int id) {
-        User user = userRepository.getUserbyId(id);
         userRepository.deleteUser(id);
         return "redirect:/index";
     }

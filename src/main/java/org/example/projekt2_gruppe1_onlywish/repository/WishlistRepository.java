@@ -1,7 +1,6 @@
 package org.example.projekt2_gruppe1_onlywish.repository;
 
 
-import org.example.projekt2_gruppe1_onlywish.config.InitData;
 import org.example.projekt2_gruppe1_onlywish.model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
