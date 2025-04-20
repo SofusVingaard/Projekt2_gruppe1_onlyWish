@@ -1,3 +1,11 @@
+Environmental variables:
+
+dbusername - OnlywishAdmin
+
+password - Skribbl!
+
+url - jdbc:mysql://onlywish-database.mysql.database.azure.com:3306/onlywish
+
 Gruppe medlemmer: 
 
 navn - github navn
@@ -12,13 +20,6 @@ Thomas Dahl - Thomas-dahl-01
 
 Link til hjemmeside: https://onlywishmain-avhzf7f8adepdee3.swedencentral-01.azurewebsites.net/ deployed gennem azure
 
-Environmental variables:
-
-dbusername - OnlywishAdmin
-
-password - Skribbl!
-
-url - jdbc:mysql://onlywish-database.mysql.database.azure.com:3306/onlywish
 
 Glossary / Ordliste
 Glossary
