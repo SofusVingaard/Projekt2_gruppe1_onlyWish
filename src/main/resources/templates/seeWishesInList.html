@@ -6,6 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
   <link rel="stylesheet" th:href="@{/css/seeWishesInList.css}">
+  <link rel="stylesheet" th:href="@{/css/createWish.css}">
 </head>
 <body>
 <header>
@@ -48,11 +49,15 @@
       <img th:if="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
       <img th:unless="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
     </div>
-    <form th:action="@{/wish/deleteWish}" method="post">
+    <a href="#" class="btn" onclick="event.preventDefault(); document.getElementById('delete-wish-form-[[${wish.id}]]').submit();">
+      Slet
+    </a>
+
+    <form id="delete-wish-form-[[${wish.id}]]" th:action="@{/wish/deleteWish}" method="post" style="display: none;">
       <input type="hidden" name="id" th:value="${wish.id}" />
       <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}" />
-      <button type="submit">Slet</button>
     </form>
+
 
 
   </div>

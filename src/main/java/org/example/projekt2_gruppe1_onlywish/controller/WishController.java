@@ -108,4 +108,5 @@ public class WishController {
         return "seeWishesInList";
 
     }
+
 }

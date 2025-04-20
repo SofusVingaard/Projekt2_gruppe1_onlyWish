@@ -5,6 +5,7 @@
     <title>Wishlist</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/headerAndFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/seeWishesInList.css}">
     <link rel="stylesheet" th:href="@{/css/createWish.css}">
 </head>
 <body>
@@ -16,53 +17,48 @@
         <a th:href="@{/}">Forside</a>
         <a th:href="@{/users/profileheader}">Min Profil</a>
         <a th:href="@{/wishlist/my-wishlists}">Ønskeliste</a>
-        <a th:href="@{/users/logout}">Log ud</a>
+        <a th:href="@{/users/login}">Login</a>
         <a th:href="@{/users/createuser}">Opret bruger</a>
     </nav>
 </header>
+<main>
+    <div id="wishlistForm" class="wishlist-container">
+        <h2>Dine Ønsker</h2>
 
 
-<main class="main-content">
-    <h2>Opret ønskeliste</h2>
-            <form th:action="@{/wishlist/create}" method="post" id="wishlist-form">
-                <label for="name">Navn på ønskeliste:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="description">Beskrivelse:</label>
-                <textarea id="description" name="description" rows="4"></textarea>
-
-                <button type="submit">Gem Ønskeliste</button>
-            </form>
-        </div>
-
-        <div th:if="${wishlists != null}">
-            <div class="showwishlist" th:each="wishlist : ${wishlists}">
+        <div th:if="${wishes != null}">
+            <div  class="showwishlist" th:each="wish : ${wishes}">
                 <div>
                     <label>Navn:</label>
-                    <span th:text="${wishlist.name}">Navn</span>
+                    <span th:text="${wish.name}">Navn</span>
                 </div>
                 <div>
                     <label>Beskrivelse:</label>
-                    <span th:text="${wishlist.description}">Beskrivelse</span>
+                    <span th:text="${wish.description}">Beskrivelse</span>
                 </div>
-                <a th:href="@{/wish/getcreatewish(wishlistId=${wishlist.id})}" class="btn">Tilføj ønsker</a>
-                <a th:href="@{/wish/wisheslist(wishlistId=${wishlist.id})}" class="btn">Se ønsker</a>
-
-                <a href="#" class="btn" onclick="event.preventDefault(); document.getElementById('delete-form-[[${wishlist.id}]]').submit();">
-                    Slet ønskeliste
+                <div>
+                    <label>Pris:</label>
+                    <span th:text="${wish.price}">0.00</span>
+                </div>
+                <div>
+                    <label>Produktlink:</label>
+                    <a th:href="${wish.productlink}" th:text="${wish.productlink}">Link</a>
+                </div>
+                <div>
+                    <label>Billede:</label>
+                    <img th:if="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
+                    <img th:unless="${wish.imageUrl != null and wish.imageUrl.startsWith('data:image/')}" th:src="${wish.imageUrl}" />
+                </div>
+                <a href="#" class="btn" onclick="event.preventDefault(); document.getElementById('delete-wish-form-[[${wish.id}]]').submit();">
+                    Slet
                 </a>
-
-                <form id="delete-form-[[${wishlist.id}]]" th:action="@{/wishlist/deleteWishlist}" method="post" th:object="${wishlist}" style="display: none;">
-                    <input type="hidden" name="id" th:value="${wishlist.id}" />
-                </form>
-
-
-
 
             </div>
         </div>
     </div>
 </main>
+
+
 
 <footer xmlns:th="http://www.thymeleaf.org">
     <div class="footer-content">
@@ -91,23 +87,5 @@
         <p>© <span th:text="${#temporals.year(#temporals.createNow())}">2025</span> Onlywish | Alle rettigheder forbeholdes</p>
     </div>
 </footer>
-
-<script>
-    const formElement = document.getElementById('wishlistForm');
-
-    function toggleForm() {
-        formElement.classList.toggle('show');
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        alert("Ønskelisten er gemt!");
-
-        document.getElementById('wishlist-form').reset();
-
-        formElement.classList.remove('show');
-    }
-</script>
 </body>
 </html>
