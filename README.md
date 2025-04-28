@@ -1,11 +1,3 @@
-Environmental variables:
-
-dbusername - OnlywishAdmin
-
-password - Skribbl!
-
-url - jdbc:mysql://onlywish-database.mysql.database.azure.com:3306/onlywish
-
 Gruppe medlemmer: 
 
 navn - github navn
